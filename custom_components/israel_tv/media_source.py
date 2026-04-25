@@ -2,11 +2,7 @@
 
 from __future__ import annotations
 
-import asyncio
 import logging
-import re
-
-import aiohttp
 
 from homeassistant.components.media_player import MediaClass, MediaType
 from homeassistant.components.media_source.models import (
@@ -15,6 +11,7 @@ from homeassistant.components.media_source.models import (
     MediaSourceItem,
     PlayMedia,
 )
+from homeassistant.components.stream import create_stream
 from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
@@ -22,54 +19,10 @@ from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
 
 _LOGGER = logging.getLogger(__name__)
 
-# Cache: channel_id → pinned low-bitrate URL, expires after this many seconds
-_CACHE_TTL = 300
-_url_cache: dict[str, tuple[str, float]] = {}
-
 
 async def async_get_media_source(hass: HomeAssistant) -> IsraelTVMediaSource:
     """Return the Israel TV media source."""
     return IsraelTVMediaSource(hass)
-
-
-async def _resolve_lowest_bitrate(master_url: str) -> str:
-    """Fetch the master playlist and return the URL for the lowest-bitrate rendition.
-
-    Pinning to a single low-bitrate rendition prevents the player from switching
-    to a higher quality stream mid-playback, which is the main cause of stutter
-    when CDN throughput barely matches the stream bitrate.
-    Falls back to the master URL if parsing fails.
-    """
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(master_url, timeout=aiohttp.ClientTimeout(total=8)) as resp:
-                if resp.status != 200:
-                    return master_url
-                text = await resp.text()
-
-        # Parse BANDWIDTH values and their associated URIs from the EXT-X-STREAM-INF lines
-        entries: list[tuple[int, str]] = []
-        lines = text.splitlines()
-        for i, line in enumerate(lines):
-            if line.startswith("#EXT-X-STREAM-INF"):
-                match = re.search(r"BANDWIDTH=(\d+)", line)
-                if match and i + 1 < len(lines):
-                    bandwidth = int(match.group(1))
-                    uri = lines[i + 1].strip()
-                    if uri and not uri.startswith("#"):
-                        entries.append((bandwidth, uri))
-
-        if not entries:
-            return master_url
-
-        # Pick the rendition with the lowest bandwidth
-        lowest_url = min(entries, key=lambda x: x[0])[1]
-        _LOGGER.debug("Pinned to lowest rendition: %s", lowest_url)
-        return lowest_url
-
-    except (aiohttp.ClientError, asyncio.TimeoutError) as err:
-        _LOGGER.warning("Could not resolve lowest bitrate for %s: %s", master_url, err)
-        return master_url
 
 
 class IsraelTVMediaSource(MediaSource):
@@ -83,24 +36,35 @@ class IsraelTVMediaSource(MediaSource):
         self.hass = hass
 
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia:
-        """Resolve a channel to its lowest-bitrate HLS rendition URL."""
-        import time
+        """Resolve a channel via HA stream proxy for smooth local playback.
 
+        HA's stream component (ffmpeg) downloads the HLS stream from the CDN
+        server-side — exactly like VLC does — then re-serves it to the browser
+        over the local network. This eliminates the browser's hls.js buffer
+        limitations that cause stuttering with 2-second HLS segments.
+
+        Falls back to the direct CDN URL if the stream proxy fails.
+        """
         channel_id = item.identifier
         channel = CHANNELS_BY_ID.get(channel_id)
         if channel is None:
             raise ValueError(f"Unknown channel: {channel_id}")
 
-        now = time.monotonic()
-        cached = _url_cache.get(channel_id)
-        if cached and now - cached[1] < _CACHE_TTL:
-            url = cached[0]
-            _LOGGER.debug("Cache hit for %s → %s", channel_id, url)
-        else:
-            url = await _resolve_lowest_bitrate(channel.url)
-            _url_cache[channel_id] = (url, now)
-
-        return PlayMedia(url, HLS_MIME_TYPE)
+        try:
+            stream = create_stream(
+                self.hass,
+                channel.url,
+                options={},
+                stream_label=channel.name_en,
+            )
+            url = await stream.async_url()
+            _LOGGER.debug("Stream proxy active for %s → %s", channel.id, url)
+            return PlayMedia(url, HLS_MIME_TYPE)
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning(
+                "Stream proxy failed for %s, falling back to direct CDN URL", channel.id
+            )
+            return PlayMedia(channel.url, HLS_MIME_TYPE)
 
     async def async_browse_media(
         self,
