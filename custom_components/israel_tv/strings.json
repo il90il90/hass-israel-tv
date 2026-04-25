@@ -1,0 +1,14 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Israel TV",
+        "description": "Add Israel TV to Home Assistant.\n\nThis will expose **{channel_count} live Israeli TV channels** in your Media Browser, allowing you to stream and cast to any compatible device (Chromecast, Apple TV, Smart TV, etc.).\n\nNo credentials required — just click Submit."
+      }
+    },
+    "abort": {
+      "already_configured": "Israel TV is already configured."
+    },
+    "error": {}
+  }
+}
