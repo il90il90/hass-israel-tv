@@ -11,7 +11,6 @@ from homeassistant.components.media_source.models import (
     MediaSourceItem,
     PlayMedia,
 )
-from homeassistant.components.stream import create_stream
 from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
@@ -36,32 +35,13 @@ class IsraelTVMediaSource(MediaSource):
         self.hass = hass
 
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia:
-        """Resolve a channel identifier to a buffered local HLS URL via HA stream proxy."""
+        """Resolve a channel identifier to its HLS URL."""
         channel_id = item.identifier
         channel = CHANNELS_BY_ID.get(channel_id)
         if channel is None:
             raise ValueError(f"Unknown channel: {channel_id}")
-
-        try:
-            # Route the stream through HA's stream component so it is buffered
-            # locally before being served to Cast devices.  This eliminates the
-            # direct CloudFront → Cast device path and prevents stutter caused
-            # by network jitter between the CDN and the playback device.
-            stream = create_stream(
-                self.hass,
-                channel.url,
-                options={},
-                stream_label=channel.name_en,
-            )
-            url = await stream.async_url()
-            _LOGGER.debug("Stream proxy URL for %s: %s", channel.id, url)
-            return PlayMedia(url, HLS_MIME_TYPE)
-        except Exception:  # noqa: BLE001
-            # Fall back to the direct CDN URL if the stream proxy fails
-            _LOGGER.warning(
-                "Stream proxy failed for %s, falling back to direct URL", channel.id
-            )
-            return PlayMedia(channel.url, HLS_MIME_TYPE)
+        _LOGGER.debug("Resolving channel %s → %s", channel.id, channel.url)
+        return PlayMedia(channel.url, HLS_MIME_TYPE)
 
     async def async_browse_media(
         self,

@@ -33,7 +33,9 @@ _CDN = "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live"
 
 
 def _cdn(slug: str) -> str:
-    return f"{_CDN}/{slug}/live.livx/playlist.m3u8?fmp4&renditions"
+    # fmp4 gives modern fragmented-MP4 segments; omitting &renditions forces a
+    # single fixed-quality stream so the player never switches quality mid-stream.
+    return f"{_CDN}/{slug}/live.livx/playlist.m3u8?fmp4"
 
 
 CHANNELS: list[Channel] = [
