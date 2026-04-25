@@ -1,0 +1,14 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ישראל TV",
+        "description": "הוסף את Israel TV ל-Home Assistant.\n\nפעולה זו תחשוף **{channel_count} ערוצי טלוויזיה ישראליים חיים** בדפדפן המדיה שלך, ותאפשר שידור ו-Cast לכל מכשיר תואם (Chromecast, Apple TV, Smart TV וכו').\n\nאין צורך בפרטי התחברות — פשוט לחץ על שלח."
+      }
+    },
+    "abort": {
+      "already_configured": "Israel TV כבר מוגדר."
+    },
+    "error": {}
+  }
+}
