@@ -1,9 +1,5 @@
 # Israel TV for Home Assistant
 
-<p align="center">
-  <img src="logo.png" alt="Israel TV" width="200"/>
-</p>
-
 [![HACS Custom][hacs-badge]][hacs-url]
 [![HA Version][ha-badge]][ha-url]
 [![License: MIT][license-badge]][license-url]
