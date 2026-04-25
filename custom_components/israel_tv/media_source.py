@@ -96,6 +96,7 @@ class IsraelTVMediaSource(MediaSource):
             title="Israel TV",
             can_play=False,
             can_expand=True,
+            thumbnail="https://raw.githubusercontent.com/il90il90/hass-israel-tv/main/custom_components/israel_tv/icon.png",
             children=children,
         )
 
