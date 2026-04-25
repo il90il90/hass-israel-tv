@@ -67,37 +67,9 @@ The integration is now active. Open **Media** in the sidebar to browse channels.
 
 ## How to Cast
 
-### Via Media Browser
-
 1. Open **Media** in the HA sidebar.
 2. Navigate to **Israel TV** → choose a category → choose a channel.
 3. Click the **Cast icon** and select your target device (Chromecast, Apple TV, etc.).
-
-### Via Service Call
-
-```yaml
-service: media_player.play_media
-target:
-  entity_id: media_player.living_room_tv
-data:
-  media_content_type: application/x-mpegURL
-  media_content_id: "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live/kan11/live.livx/playlist.m3u8?fmp4&renditions"
-```
-
-### Via Lovelace Button
-
-```yaml
-type: button
-name: כאן 11
-tap_action:
-  action: call-service
-  service: media_player.play_media
-  target:
-    entity_id: media_player.living_room_tv
-  service_data:
-    media_content_type: application/x-mpegURL
-    media_content_id: "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live/kan11/live.livx/playlist.m3u8?fmp4&renditions"
-```
 
 ---
 
