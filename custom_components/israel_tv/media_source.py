@@ -54,7 +54,10 @@ class IsraelTVMediaSource(MediaSource):
             stream = create_stream(
                 self.hass,
                 channel.url,
-                options={},
+                # Use 5-second output segments so the browser playlist holds
+                # ~15 seconds of buffer (NUM_PLAYLIST_SEGMENTS=3 × 5s),
+                # matching VLC's default lookahead and eliminating stutter.
+                options={"segment_duration": 5},
                 stream_label=channel.name_en,
             )
             url = await stream.async_url()
