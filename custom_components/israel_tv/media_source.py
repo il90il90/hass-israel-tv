@@ -43,11 +43,14 @@ _NEXTBET_HEADERS = {
     "Referer": "https://nextbet7.tv/",
 }
 
-# Regex patterns to find the HLS URL inside the page HTML
+# Regex patterns to find the HLS URL inside the page HTML.
+# anonsports URLs are tried first: they are direct .m3u8 streams and work
+# without browser verification. The lacasada.site URLs require a browser
+# challenge and redirect to google.com when fetched server-side.
 _SRC_PATTERNS = [
+    re.compile(r"https?://[^\"' <>]*anonsports[^\"' <>]*\.m3u8[^\"' <>]*", re.I),
     re.compile(r'<source\s+src="([^"]+)"[^>]*type="application/x-mpegURL"', re.I),
     re.compile(r'type="application/x-mpegURL"[^>]*src="([^"]+)"', re.I),
-    re.compile(r"['\"]?(https?://[^'\"]+\.m3u8[^'\"]*)['\"]?", re.I),
 ]
 
 
@@ -76,7 +79,9 @@ async def _extract_hls_from_page(page_url: str) -> str | None:
         for pattern in _SRC_PATTERNS:
             match = pattern.search(html)
             if match:
-                url = match.group(1)
+                # Patterns with a capture group return group(1); full-match
+                # patterns (anonsports) return group(0).
+                url = match.group(1) if match.lastindex else match.group(0)
                 _LOGGER.debug("Extracted HLS URL from %s: %s", page_url, url)
                 return url
 
