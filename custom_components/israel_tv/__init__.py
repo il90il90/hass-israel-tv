@@ -8,13 +8,20 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
+from .proxy import IsraelTVHLSProxyView
 
 _LOGGER = logging.getLogger(__name__)
 
+# Shared dict: channel_id → current real HLS URL (updated by media_source.py)
+# Registered once at component setup so the proxy view can always read it.
+STREAM_URL_STORE: dict[str, str] = {}
+
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    """Set up the Israel TV component."""
+    """Set up the Israel TV component and register the HLS proxy view."""
     hass.data.setdefault(DOMAIN, {})
+    hass.http.register_view(IsraelTVHLSProxyView(STREAM_URL_STORE))
+    _LOGGER.debug("Israel TV HLS proxy view registered")
     return True
 
 
