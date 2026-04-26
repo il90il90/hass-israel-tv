@@ -1,16 +1,17 @@
 """Internal HLS proxy view for channels that require a Referer header.
 
-YES Sport channels on lacasada.site/zbahistv11.com block requests that do not
-carry the correct Referer. HA's ffmpeg-based stream component fetches the
-source URL without any Referer header, so playback fails.
+YES Sport channels on lacasada.site block requests that do not carry the exact
+Referer of the nextbet7.tv channel page (e.g. https://nextbet7.tv/kanal-izle/yes-1).
+HA's ffmpeg-based stream component fetches the source URL without any Referer
+header, so playback fails with HTTP 403/404.
 
 This module registers a lightweight aiohttp view inside HA's HTTP server.
-The view forwards GET requests to the real CDN while injecting the required
-Referer, then streams the response back to the caller (ffmpeg / browser).
+The view forwards GET requests to the real CDN while injecting the correct
+Referer and Origin headers, then streams the response back to the caller.
 
-Endpoint pattern:
-  /api/israel_tv/hls/{channel_id}          → m3u8 playlist
-  /api/israel_tv/hls/{channel_id}/segment  → TS segment (if needed)
+Endpoint: /api/israel_tv/hls/{channel_id}
+
+The shared store holds: channel_id → (real_cdn_url, source_page_url)
 """
 
 from __future__ import annotations
@@ -22,55 +23,62 @@ from aiohttp import web
 
 from homeassistant.components.http import HomeAssistantView
 
-from .const import DOMAIN
-
 _LOGGER = logging.getLogger(__name__)
 
-# Headers injected into every upstream CDN request
-_PROXY_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-    "Referer": "https://nextbet7.tv/",
-    "Accept": "*/*",
-    "Origin": "https://nextbet7.tv",
-}
+_USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/120.0.0.0 Safari/537.36"
+)
 
 
 class IsraelTVHLSProxyView(HomeAssistantView):
     """Proxy an HLS playlist URL, injecting the required Referer header.
 
-    The real stream URL is stored in a shared dict keyed by channel_id and
-    updated by media_source.py every time a fresh token is extracted.
+    The shared store (keyed by channel_id) holds a tuple:
+      (real_cdn_url, source_page_url)
+    where source_page_url is the nextbet7.tv page URL used as Referer.
     """
 
     url = "/api/israel_tv/hls/{channel_id}"
     name = "api:israel_tv:hls"
     requires_auth = False  # ffmpeg fetches this internally on the same host
 
-    def __init__(self, stream_urls: dict[str, str]) -> None:
+    def __init__(self, stream_urls: dict[str, tuple[str, str]]) -> None:
         """Initialize with a reference to the shared URL store."""
         self._stream_urls = stream_urls
 
     async def get(self, request: web.Request, channel_id: str) -> web.Response:
-        """Fetch the m3u8 from the CDN and return it to the caller."""
-        real_url = self._stream_urls.get(channel_id)
-        if not real_url:
+        """Fetch the m3u8 from the CDN with the correct Referer and return it."""
+        entry = self._stream_urls.get(channel_id)
+        if not entry:
             return web.Response(status=404, text="No stream URL cached for channel")
+
+        real_url, page_url = entry
+
+        # The CDN validates that Referer matches the embedding nextbet7.tv page.
+        # Origin must also be set for the CORS pre-check the CDN performs.
+        headers = {
+            "User-Agent": _USER_AGENT,
+            "Referer": page_url,
+            "Origin": "https://nextbet7.tv",
+            "Accept": "*/*",
+        }
 
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
                     real_url,
-                    headers=_PROXY_HEADERS,
+                    headers=headers,
                     timeout=aiohttp.ClientTimeout(total=10),
                     allow_redirects=True,
                 ) as resp:
                     if resp.status != 200:
                         _LOGGER.warning(
-                            "CDN returned HTTP %s for channel %s", resp.status, channel_id
+                            "CDN returned HTTP %s for channel %s (url=%s)",
+                            resp.status,
+                            channel_id,
+                            real_url,
                         )
                         return web.Response(status=resp.status, text="CDN error")
 

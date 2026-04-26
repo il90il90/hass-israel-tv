@@ -12,9 +12,11 @@ from .proxy import IsraelTVHLSProxyView
 
 _LOGGER = logging.getLogger(__name__)
 
-# Shared dict: channel_id → current real HLS URL (updated by media_source.py)
-# Registered once at component setup so the proxy view can always read it.
-STREAM_URL_STORE: dict[str, str] = {}
+# Shared dict: channel_id → (real_cdn_url, source_page_url)
+# real_cdn_url   — the lacasada.site HLS playlist URL (token-bearing)
+# source_page_url — the nextbet7.tv page used as Referer when fetching from CDN
+# Updated by media_source.py every time a fresh token is extracted.
+STREAM_URL_STORE: dict[str, tuple[str, str]] = {}
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:

@@ -112,13 +112,13 @@ async def _get_channel_url(
 
         if fresh_url:
             _extraction_cache[channel.id] = (fresh_url, now)
-            # Store real URL so the proxy view can fetch it with Referer
-            STREAM_URL_STORE[channel.id] = fresh_url
+            # Store (cdn_url, page_url) so the proxy knows the exact Referer to use
+            STREAM_URL_STORE[channel.id] = (fresh_url, channel.url)
         elif cached:
             _LOGGER.warning(
                 "Extraction failed for %s, using stale cached URL", channel.id
             )
-            STREAM_URL_STORE[channel.id] = cached[0]
+            STREAM_URL_STORE[channel.id] = (cached[0], channel.url)
         else:
             raise ValueError(f"Could not extract HLS URL for channel {channel.id}")
 

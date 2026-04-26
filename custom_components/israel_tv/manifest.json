@@ -1,7 +1,7 @@
 {
   "domain": "israel_tv",
   "name": "Israel TV",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "documentation": "https://github.com/il90il90/hass-israel-tv",
   "issue_tracker": "https://github.com/il90il90/hass-israel-tv/issues",
   "codeowners": ["@il90il90"],
