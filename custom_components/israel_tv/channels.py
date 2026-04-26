@@ -15,11 +15,14 @@ class Channel:
     category: str
     url: str
     thumbnail: str | None = None
+    # When True the url is a webpage — the real HLS URL must be extracted from its HTML
+    needs_extraction: bool = False
 
 
 CATEGORY_LABELS: dict[str, str] = {
     "broadcast": "שידורי ישראל",
     "sport": "ספורט 5",
+    "yes": "YES ספורט",
     "one": "ONE",
     "viva": "VIVA",
     "reality": "ריאליטי ותוכן",
@@ -187,6 +190,39 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 4K",
         category="sport",
         url=_cdn("sport_5_4k"),
+    ),
+    # ── YES Sport ──────────────────────────────────────────────────────────────
+    Channel(
+        id="yes_sport1",
+        name="YES ספורט 1",
+        name_en="YES Sport 1",
+        category="yes",
+        url="https://nextbet7.tv/kanal-izle/yes-1",
+        needs_extraction=True,
+    ),
+    Channel(
+        id="yes_sport2",
+        name="YES ספורט 2",
+        name_en="YES Sport 2",
+        category="yes",
+        url="https://nextbet7.tv/kanal-izle/yes-2",
+        needs_extraction=True,
+    ),
+    Channel(
+        id="yes_sport3",
+        name="YES ספורט 3",
+        name_en="YES Sport 3",
+        category="yes",
+        url="https://nextbet7.tv/kanal-izle/yes-3",
+        needs_extraction=True,
+    ),
+    Channel(
+        id="yes_sport4",
+        name="YES ספורט 4",
+        name_en="YES Sport 4",
+        category="yes",
+        url="https://nextbet7.tv/kanal-izle/yes-4",
+        needs_extraction=True,
     ),
     # ── ONE ────────────────────────────────────────────────────────────────────
     Channel(
