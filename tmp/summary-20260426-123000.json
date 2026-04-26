@@ -1,0 +1,4 @@
+{
+  "summary": "Fixed YES Sport channels not working. Root cause: lacasada.site CDN validates the Referer header against the exact nextbet7.tv channel page URL (e.g., https://nextbet7.tv/kanal-izle/yes-1), not just the domain root. The proxy.py was sending 'Referer: https://nextbet7.tv/' which resulted in HTTP 404. Fix: STREAM_URL_STORE now holds (cdn_url, page_url) tuples; proxy injects the per-channel page URL as Referer and Origin. manifest.json bumped to 1.3.0. Commit made (8a60c9c) but push requires manual authentication from user terminal.",
+  "current_status": "All code changes committed. User needs to: 1) git push manually, 2) Update via HACS, 3) Full HA restart. YES Sport channels should work after that."
+}
