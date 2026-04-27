@@ -16,6 +16,7 @@ from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
 from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
+from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -36,27 +37,52 @@ class IsraelTVMediaSource(MediaSource):
         self.hass = hass
 
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia:
-        """Resolve a channel via HA stream proxy for smooth local playback.
+        """Resolve a channel to a playable HLS URL.
 
-        HA's stream component (ffmpeg) downloads the HLS stream from the CDN
-        server-side — exactly like VLC does — then re-serves it to the browser
-        over the local network. This eliminates the browser's hls.js buffer
-        limitations that cause stuttering with 2-second HLS segments.
-
-        Falls back to the direct CDN URL if the stream proxy fails.
+        - Static channels (Sport 5, broadcasts, etc.) are proxied through
+          HA's stream component for smooth buffering (like VLC).
+        - YES Sport channels are scraped from nextbet7.tv on demand, with
+          the token cached for 4 minutes and refreshed transparently.
         """
         channel_id = item.identifier
         channel = CHANNELS_BY_ID.get(channel_id)
         if channel is None:
             raise ValueError(f"Unknown channel: {channel_id}")
 
+        if channel.channel_type == "yes_sport":
+            return await self._resolve_yes_sport(channel)
+
+        return await self._resolve_static(channel)
+
+    async def _resolve_yes_sport(self, channel: Channel) -> PlayMedia:
+        """Resolve a YES Sport channel via token scraping with auto-refresh."""
+        try:
+            url = await yes_sport.get_stream_url(channel.id)
+            _LOGGER.debug("YES Sport %s → %s", channel.id, url)
+            # Proxy through HA stream for buffering; on failure use direct URL
+            try:
+                stream = create_stream(
+                    self.hass,
+                    url,
+                    options={"segment_duration": 5},
+                    stream_label=channel.name_en,
+                )
+                proxy_url = await stream.async_url()
+                return PlayMedia(proxy_url, HLS_MIME_TYPE)
+            except Exception:  # noqa: BLE001
+                return PlayMedia(url, HLS_MIME_TYPE)
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to resolve YES Sport %s: %s", channel.id, err)
+            raise
+
+    async def _resolve_static(self, channel: Channel) -> PlayMedia:
+        """Resolve a static CDN channel via HA stream proxy."""
         try:
             stream = create_stream(
                 self.hass,
                 channel.url,
-                # Use 5-second output segments so the browser playlist holds
-                # ~15 seconds of buffer (NUM_PLAYLIST_SEGMENTS=3 × 5s),
-                # matching VLC's default lookahead and eliminating stutter.
+                # 5-second segments give the browser ~15 s of buffer
+                # (NUM_PLAYLIST_SEGMENTS=3 × 5 s), matching VLC lookahead.
                 options={"segment_duration": 5},
                 stream_label=channel.name_en,
             )
@@ -79,7 +105,6 @@ class IsraelTVMediaSource(MediaSource):
         if identifier == ROOT_ID:
             return self._build_root()
 
-        # identifier is a category key
         if identifier in CATEGORY_LABELS:
             return self._build_category(identifier)
 
@@ -92,7 +117,7 @@ class IsraelTVMediaSource(MediaSource):
         children = [
             self._build_category_stub(cat, label)
             for cat, label in CATEGORY_LABELS.items()
-            if get_channels_by_category(cat)  # skip empty categories
+            if get_channels_by_category(cat)
         ]
         return BrowseMediaSource(
             domain=DOMAIN,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -14,13 +14,14 @@ class Channel:
     name_en: str
     category: str
     url: str
+    # channel_type="yes_sport" triggers token-based scraping in media_source.py
+    channel_type: str = "static"
     thumbnail: str | None = None
 
 
 CATEGORY_LABELS: dict[str, str] = {
     "broadcast": "שידורי ישראל",
-    "sport": "ספורט 5",
-    "one": "ONE",
+    "sport": "ספורט",
     "viva": "VIVA",
     "reality": "ריאליטי ותוכן",
     "music": "מוזיקה ובידור",
@@ -131,7 +132,7 @@ CHANNELS: list[Channel] = [
         category="broadcast",
         url=_cdn("ch9"),
     ),
-    # ── Sport 5 ────────────────────────────────────────────────────────────────
+    # ── Sport (Sport 5 + ONE + YES Sport — all under one folder) ───────────────
     Channel(
         id="sport_5",
         name="ספורט 5",
@@ -188,34 +189,66 @@ CHANNELS: list[Channel] = [
         category="sport",
         url=_cdn("sport_5_4k"),
     ),
-    # ── ONE ────────────────────────────────────────────────────────────────────
     Channel(
         id="one_1",
         name="ONE 1",
         name_en="ONE 1",
-        category="one",
+        category="sport",
         url=_cdn("one_1"),
     ),
     Channel(
         id="one_2",
         name="ONE 2",
         name_en="ONE 2",
-        category="one",
+        category="sport",
         url=_cdn("one_2"),
     ),
     Channel(
         id="one_doco",
         name="ONE דוקו",
         name_en="ONE Doco",
-        category="one",
+        category="sport",
         url=_cdn("one_doco"),
     ),
     Channel(
         id="one_edge",
         name="ONE אדג'",
         name_en="ONE Edge",
-        category="one",
+        category="sport",
         url=_cdn("one_edge"),
+    ),
+    # YES Sport 1-4: token refreshed automatically via nextbet7.tv scraping
+    Channel(
+        id="yes1",
+        name="YES ספורט 1",
+        name_en="YES Sport 1",
+        category="sport",
+        url="",
+        channel_type="yes_sport",
+    ),
+    Channel(
+        id="yes2",
+        name="YES ספורט 2",
+        name_en="YES Sport 2",
+        category="sport",
+        url="",
+        channel_type="yes_sport",
+    ),
+    Channel(
+        id="yes3",
+        name="YES ספורט 3",
+        name_en="YES Sport 3",
+        category="sport",
+        url="",
+        channel_type="yes_sport",
+    ),
+    Channel(
+        id="yes4",
+        name="YES ספורט 4",
+        name_en="YES Sport 4",
+        category="sport",
+        url="",
+        channel_type="yes_sport",
     ),
     # ── VIVA ───────────────────────────────────────────────────────────────────
     Channel(
