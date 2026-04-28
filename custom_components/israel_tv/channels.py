@@ -32,11 +32,20 @@ CATEGORY_LABELS: dict[str, str] = {
 
 _CDN = "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live"
 
+# Base URL for logos served as static assets by the HA HTTP component.
+# Files live in custom_components/israel_tv/logos/ and are registered in __init__.py.
+_LOGO = "/israel_tv/logos/{}.png"
+
 
 def _cdn(slug: str) -> str:
     # fmp4 gives modern fragmented-MP4 segments; omitting &renditions forces a
     # single fixed-quality stream so the player never switches quality mid-stream.
     return f"{_CDN}/{slug}/live.livx/playlist.m3u8?fmp4"
+
+
+def _logo(name: str) -> str:
+    """Return the local HA path for a logo PNG file."""
+    return _LOGO.format(name)
 
 
 CHANNELS: list[Channel] = [
@@ -47,6 +56,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 11",
         category="broadcast",
         url=_cdn("kan11"),
+        thumbnail=_logo("kan11"),
     ),
     Channel(
         id="kan11_hevc",
@@ -54,6 +64,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 11 HEVC",
         category="broadcast",
         url=_cdn("kan11_hevc"),
+        thumbnail=_logo("kan11"),
     ),
     Channel(
         id="kan11_subs",
@@ -61,6 +72,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 11 Subtitles",
         category="broadcast",
         url=_cdn("kan11_subs"),
+        thumbnail=_logo("kan11"),
     ),
     Channel(
         id="keshet_12",
@@ -68,6 +80,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 12",
         category="broadcast",
         url=_cdn("keshet_12"),
+        thumbnail=_logo("keshet_12"),
     ),
     Channel(
         id="keshet_12_hevc",
@@ -75,6 +88,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 12 HEVC",
         category="broadcast",
         url=_cdn("keshet_12_hevc"),
+        thumbnail=_logo("keshet_12"),
     ),
     Channel(
         id="keshet_12_subs",
@@ -82,6 +96,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 12 Subtitles",
         category="broadcast",
         url=_cdn("keshet_12_subs"),
+        thumbnail=_logo("keshet_12"),
     ),
     Channel(
         id="reshet_13",
@@ -89,6 +104,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 13",
         category="broadcast",
         url=_cdn("reshet_13"),
+        thumbnail=_logo("reshet_13"),
     ),
     Channel(
         id="reshet_13_hevc",
@@ -96,6 +112,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 13 HEVC",
         category="broadcast",
         url=_cdn("reshet_13_hevc"),
+        thumbnail=_logo("reshet_13"),
     ),
     Channel(
         id="reshet_13_subs",
@@ -103,6 +120,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 13 Subtitles",
         category="broadcast",
         url=_cdn("reshet_13_subs"),
+        thumbnail=_logo("reshet_13"),
     ),
     Channel(
         id="ch14",
@@ -110,6 +128,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 14",
         category="broadcast",
         url=_cdn("ch14"),
+        thumbnail=_logo("ch14"),
     ),
     Channel(
         id="ch14_hevc",
@@ -117,6 +136,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 14 HEVC",
         category="broadcast",
         url=_cdn("ch14_hevc"),
+        thumbnail=_logo("ch14"),
     ),
     Channel(
         id="ch14_subs",
@@ -124,6 +144,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 14 Subtitles",
         category="broadcast",
         url=_cdn("ch14_subs"),
+        thumbnail=_logo("ch14"),
     ),
     Channel(
         id="ch9",
@@ -131,6 +152,7 @@ CHANNELS: list[Channel] = [
         name_en="Channel 9",
         category="broadcast",
         url=_cdn("ch9"),
+        thumbnail=_logo("ch9"),
     ),
     # ── Sport (Sport 5 + ONE + YES Sport — all under one folder) ───────────────
     Channel(
@@ -139,6 +161,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5",
         category="sport",
         url=_cdn("sport_5"),
+        thumbnail=_logo("sport_5"),
     ),
     Channel(
         id="sport_5_plus",
@@ -146,6 +169,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Plus",
         category="sport",
         url=_cdn("sport_5_plus"),
+        thumbnail=_logo("sport_5_plus"),
     ),
     Channel(
         id="sport_5_plus_hevc",
@@ -153,6 +177,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Plus HEVC",
         category="sport",
         url=_cdn("sport_5_plus_hevc"),
+        thumbnail=_logo("sport_5_plus"),
     ),
     Channel(
         id="sport_5_gold",
@@ -160,6 +185,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Gold",
         category="sport",
         url=_cdn("sport_5_gold"),
+        thumbnail=_logo("sport_5_gold"),
     ),
     Channel(
         id="sport_5_live",
@@ -167,6 +193,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Live",
         category="sport",
         url=_cdn("sport_5_live"),
+        thumbnail=_logo("sport_5_live"),
     ),
     Channel(
         id="sport_5_live_hevc",
@@ -174,6 +201,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Live HEVC",
         category="sport",
         url=_cdn("sport_5_live_hevc"),
+        thumbnail=_logo("sport_5_live"),
     ),
     Channel(
         id="sport_5_max",
@@ -181,6 +209,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Max",
         category="sport",
         url=_cdn("sport_5_max"),
+        thumbnail=_logo("sport_5"),
     ),
     Channel(
         id="sport_5_4k",
@@ -188,6 +217,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 4K",
         category="sport",
         url=_cdn("sport_5_4k"),
+        thumbnail=_logo("sport_5_4k"),
     ),
     Channel(
         id="one_1",
@@ -195,6 +225,7 @@ CHANNELS: list[Channel] = [
         name_en="ONE 1",
         category="sport",
         url=_cdn("one_1"),
+        thumbnail=_logo("one_1"),
     ),
     Channel(
         id="one_2",
@@ -202,6 +233,7 @@ CHANNELS: list[Channel] = [
         name_en="ONE 2",
         category="sport",
         url=_cdn("one_2"),
+        thumbnail=_logo("one_2"),
     ),
     Channel(
         id="one_doco",
@@ -209,6 +241,7 @@ CHANNELS: list[Channel] = [
         name_en="ONE Doco",
         category="sport",
         url=_cdn("one_doco"),
+        thumbnail=_logo("one_1"),
     ),
     Channel(
         id="one_edge",
@@ -216,6 +249,7 @@ CHANNELS: list[Channel] = [
         name_en="ONE Edge",
         category="sport",
         url=_cdn("one_edge"),
+        thumbnail=_logo("one_1"),
     ),
     # Sport 1-4: token refreshed automatically via scraping
     Channel(
@@ -225,6 +259,7 @@ CHANNELS: list[Channel] = [
         category="sport",
         url="",
         channel_type="yes_sport",
+        thumbnail=_logo("yes1"),
     ),
     Channel(
         id="yes2",
@@ -233,6 +268,7 @@ CHANNELS: list[Channel] = [
         category="sport",
         url="",
         channel_type="yes_sport",
+        thumbnail=_logo("yes2"),
     ),
     Channel(
         id="yes3",
@@ -241,6 +277,7 @@ CHANNELS: list[Channel] = [
         category="sport",
         url="",
         channel_type="yes_sport",
+        thumbnail=_logo("yes3"),
     ),
     Channel(
         id="yes4",
@@ -249,6 +286,7 @@ CHANNELS: list[Channel] = [
         category="sport",
         url="",
         channel_type="yes_sport",
+        thumbnail=_logo("yes4"),
     ),
     # ── VIVA ───────────────────────────────────────────────────────────────────
     Channel(
@@ -257,6 +295,7 @@ CHANNELS: list[Channel] = [
         name_en="VIVA",
         category="viva",
         url=_cdn("viva"),
+        thumbnail=_logo("viva"),
     ),
     Channel(
         id="viva_plus",
@@ -264,6 +303,7 @@ CHANNELS: list[Channel] = [
         name_en="VIVA Plus",
         category="viva",
         url=_cdn("viva_plus"),
+        thumbnail=_logo("viva_plus"),
     ),
     # ── Reality & Content ──────────────────────────────────────────────────────
     Channel(
@@ -294,6 +334,7 @@ CHANNELS: list[Channel] = [
         name_en="Music IL",
         category="music",
         url=_cdn("music_il"),
+        thumbnail=_logo("music_il"),
     ),
     Channel(
         id="karaoke",
@@ -309,6 +350,7 @@ CHANNELS: list[Channel] = [
         name_en="Yoyo",
         category="kids",
         url=_cdn("yoyo"),
+        thumbnail=_logo("yoyo"),
     ),
     Channel(
         id="logi",
@@ -330,6 +372,7 @@ CHANNELS: list[Channel] = [
         name_en="Junior",
         category="kids",
         url=_cdn("junior"),
+        thumbnail=_logo("junior"),
     ),
     Channel(
         id="fomo",
@@ -345,6 +388,7 @@ CHANNELS: list[Channel] = [
         name_en="Foody",
         category="lifestyle",
         url=_cdn("foody"),
+        thumbnail=_logo("foody"),
     ),
     Channel(
         id="beautyz",
