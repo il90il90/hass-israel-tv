@@ -60,14 +60,6 @@ CHANNELS: list[Channel] = [
         thumbnail=_logo("kan11"),
     ),
     Channel(
-        id="kan11_hevc",
-        name="כאן 11 HEVC",
-        name_en="Channel 11 HEVC",
-        category="broadcast",
-        url=_cdn("kan11_hevc"),
-        thumbnail=_logo("kan11"),
-    ),
-    Channel(
         id="kan11_subs",
         name="כאן 11 כתוביות",
         name_en="Channel 11 Subtitles",
@@ -81,14 +73,6 @@ CHANNELS: list[Channel] = [
         name_en="Channel 12",
         category="broadcast",
         url=_cdn("keshet_12"),
-        thumbnail=_logo("keshet_12"),
-    ),
-    Channel(
-        id="keshet_12_hevc",
-        name="קשת 12 HEVC",
-        name_en="Channel 12 HEVC",
-        category="broadcast",
-        url=_cdn("keshet_12_hevc"),
         thumbnail=_logo("keshet_12"),
     ),
     Channel(
@@ -108,14 +92,6 @@ CHANNELS: list[Channel] = [
         thumbnail=_logo("reshet_13"),
     ),
     Channel(
-        id="reshet_13_hevc",
-        name="רשת 13 HEVC",
-        name_en="Channel 13 HEVC",
-        category="broadcast",
-        url=_cdn("reshet_13_hevc"),
-        thumbnail=_logo("reshet_13"),
-    ),
-    Channel(
         id="reshet_13_subs",
         name="רשת 13 כתוביות",
         name_en="Channel 13 Subtitles",
@@ -129,14 +105,6 @@ CHANNELS: list[Channel] = [
         name_en="Channel 14",
         category="broadcast",
         url=_cdn("ch14"),
-        thumbnail=_logo("ch14"),
-    ),
-    Channel(
-        id="ch14_hevc",
-        name="ערוץ 14 HEVC",
-        name_en="Channel 14 HEVC",
-        category="broadcast",
-        url=_cdn("ch14_hevc"),
         thumbnail=_logo("ch14"),
     ),
     Channel(
@@ -173,14 +141,6 @@ CHANNELS: list[Channel] = [
         thumbnail=_logo("sport_5_plus"),
     ),
     Channel(
-        id="sport_5_plus_hevc",
-        name="ספורט 5 פלוס HEVC",
-        name_en="Sport 5 Plus HEVC",
-        category="sport",
-        url=_cdn("sport_5_plus_hevc"),
-        thumbnail=_logo("sport_5_plus"),
-    ),
-    Channel(
         id="sport_5_gold",
         name="ספורט 5 גולד",
         name_en="Sport 5 Gold",
@@ -194,14 +154,6 @@ CHANNELS: list[Channel] = [
         name_en="Sport 5 Live",
         category="sport",
         url=_cdn("sport_5_live"),
-        thumbnail=_logo("sport_5_live"),
-    ),
-    Channel(
-        id="sport_5_live_hevc",
-        name="ספורט 5 לייב HEVC",
-        name_en="Sport 5 Live HEVC",
-        category="sport",
-        url=_cdn("sport_5_live_hevc"),
         thumbnail=_logo("sport_5_live"),
     ),
     Channel(
