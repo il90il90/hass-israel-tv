@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
-from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
@@ -35,13 +34,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if not _VIEWS_REGISTERED:
         hass.http.register_view(YesSportPlaylistView())
         hass.http.register_view(YesSportSegmentView())
-        await hass.http.async_register_static_paths([
-            StaticPathConfig(
-                url_path="/israel_tv/logos",
-                path=Path(__file__).parent / "logos",
-                cache_headers=True,
+        # async_register_static_paths (HA ≥ 2024.x) — fall back to the
+        # older synchronous API for installations running an earlier version.
+        logos_path = Path(__file__).parent / "logos"
+        try:
+            from homeassistant.components.http import StaticPathConfig  # noqa: PLC0415
+            await hass.http.async_register_static_paths([
+                StaticPathConfig(
+                    url_path="/israel_tv/logos",
+                    path=logos_path,
+                    cache_headers=True,
+                )
+            ])
+        except (ImportError, AttributeError):
+            hass.http.register_static_path(
+                "/israel_tv/logos", str(logos_path), cache_headers=True
             )
-        ])
         _VIEWS_REGISTERED = True
         _LOGGER.debug("YES Sport HLS proxy views and logo assets registered")
 
