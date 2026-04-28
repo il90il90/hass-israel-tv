@@ -35,7 +35,8 @@ CHANNEL_PAGES: dict[str, str] = {
     "yes4": "https://nextbet7.tv/kanal-izle/yes-4",
 }
 
-# Headers that mimic a real browser — required by Cloudflare WAF
+# Headers that mimic a real browser — required by Cloudflare WAF.
+# The Referer header is critical: nextbet7.tv validates it on the page request.
 _SCRAPE_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -44,14 +45,21 @@ _SCRAPE_HEADERS = {
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9,tr;q=0.8",
+    "Referer": "https://nextbet7.tv/",
 }
 
 # The Referer that the CDN validates on every playlist/segment request
 STREAM_REFERER = "https://nextbet7.tv/"
 
-# Regex to extract <source src="..." type="application/x-mpegURL">
+# Two patterns to handle both attribute orders in the <source> tag:
+#   <source src="URL" type="application/x-mpegURL">   (src first)
+#   <source type="application/x-mpegURL" src="URL">   (type first)
 _SOURCE_RE = re.compile(
     r'<source\s+src="([^"]+)"[^>]*type="application/x-mpegURL"',
+    re.IGNORECASE,
+)
+_SOURCE_RE_ALT = re.compile(
+    r'type="application/x-mpegURL"[^>]*src="([^"]+)"',
     re.IGNORECASE,
 )
 
@@ -111,7 +119,7 @@ async def _scrape(channel_id: str) -> str:
     except aiohttp.ClientError as err:
         raise RuntimeError(f"Failed to fetch {page_url}: {err}") from err
 
-    match = _SOURCE_RE.search(html)
+    match = _SOURCE_RE.search(html) or _SOURCE_RE_ALT.search(html)
     if not match:
         raise RuntimeError(
             f"Could not find HLS source URL in {page_url}. "

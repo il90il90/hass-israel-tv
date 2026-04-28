@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from homeassistant.components.camera import DynamicStreamSettings
 from homeassistant.components.media_player import MediaClass, MediaType
 from homeassistant.components.media_source.models import (
     BrowseMediaSource,
@@ -11,7 +12,7 @@ from homeassistant.components.media_source.models import (
     MediaSourceItem,
     PlayMedia,
 )
-from homeassistant.components.stream import create_stream
+from homeassistant.components.stream import HLS_PROVIDER, create_stream
 from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
@@ -55,25 +56,16 @@ class IsraelTVMediaSource(MediaSource):
         return await self._resolve_static(channel)
 
     async def _resolve_yes_sport(self, channel: Channel) -> PlayMedia:
-        """Resolve a YES Sport channel via token scraping with auto-refresh."""
-        try:
-            url = await yes_sport.get_stream_url(channel.id)
-            _LOGGER.debug("YES Sport %s → %s", channel.id, url)
-            # Proxy through HA stream for buffering; on failure use direct URL
-            try:
-                stream = create_stream(
-                    self.hass,
-                    url,
-                    options={"segment_duration": 5},
-                    stream_label=channel.name_en,
-                )
-                proxy_url = await stream.async_url()
-                return PlayMedia(proxy_url, HLS_MIME_TYPE)
-            except Exception:  # noqa: BLE001
-                return PlayMedia(url, HLS_MIME_TYPE)
-        except Exception as err:  # noqa: BLE001
-            _LOGGER.error("Failed to resolve YES Sport %s: %s", channel.id, err)
-            raise
+        """Resolve a YES Sport channel to our local HLS proxy URL.
+
+        The local proxy at /api/israel_tv/stream/{id}/playlist.m3u8 fetches
+        the CDN playlist with the required Referer header and rewrites all
+        segment URLs to go through the proxy as well — bypassing both CORS
+        restrictions and ffmpeg's non-standard extension filter.
+        """
+        proxy_url = f"/api/israel_tv/stream/{channel.id}/playlist.m3u8"
+        _LOGGER.debug("YES Sport %s → local proxy %s", channel.id, proxy_url)
+        return PlayMedia(proxy_url, HLS_MIME_TYPE)
 
     async def _resolve_static(self, channel: Channel) -> PlayMedia:
         """Resolve a static CDN channel via HA stream proxy."""
@@ -81,12 +73,12 @@ class IsraelTVMediaSource(MediaSource):
             stream = create_stream(
                 self.hass,
                 channel.url,
-                # 5-second segments give the browser ~15 s of buffer
-                # (NUM_PLAYLIST_SEGMENTS=3 × 5 s), matching VLC lookahead.
-                options={"segment_duration": 5},
+                options={},
+                dynamic_stream_settings=DynamicStreamSettings(),
                 stream_label=channel.name_en,
             )
-            url = await stream.async_url()
+            stream.add_provider(HLS_PROVIDER)
+            url = stream.endpoint_url(HLS_PROVIDER)
             _LOGGER.debug("Stream proxy active for %s → %s", channel.id, url)
             return PlayMedia(url, HLS_MIME_TYPE)
         except Exception:  # noqa: BLE001
