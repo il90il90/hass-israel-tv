@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
@@ -29,12 +31,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = entry.data
 
-    # Register the YES Sport HLS proxy views once per HA instance lifetime
+    # Register HTTP views and static assets once per HA instance lifetime
     if not _VIEWS_REGISTERED:
         hass.http.register_view(YesSportPlaylistView())
         hass.http.register_view(YesSportSegmentView())
+        await hass.http.async_register_static_paths([
+            StaticPathConfig(
+                url_path="/israel_tv/logos",
+                path=Path(__file__).parent / "logos",
+                cache_headers=True,
+            )
+        ])
         _VIEWS_REGISTERED = True
-        _LOGGER.debug("YES Sport HLS proxy views registered")
+        _LOGGER.debug("YES Sport HLS proxy views and logo assets registered")
 
     _LOGGER.debug("Israel TV integration loaded (entry_id=%s)", entry.entry_id)
     return True
