@@ -14,7 +14,7 @@ from homeassistant.components.media_source.models import (
 from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
-from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID, DEFAULT_THUMBNAIL
+from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
 from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
@@ -149,5 +149,5 @@ class IsraelTVMediaSource(MediaSource):
             title=channel.name,
             can_play=True,
             can_expand=False,
-            thumbnail=channel.thumbnail or DEFAULT_THUMBNAIL,
+            thumbnail=channel.thumbnail,
         )
