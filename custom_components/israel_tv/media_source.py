@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 
-from homeassistant.components.camera import DynamicStreamSettings
 from homeassistant.components.media_player import MediaClass, MediaType
 from homeassistant.components.media_source.models import (
     BrowseMediaSource,
@@ -12,11 +11,10 @@ from homeassistant.components.media_source.models import (
     MediaSourceItem,
     PlayMedia,
 )
-from homeassistant.components.stream import HLS_PROVIDER, create_stream
 from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
-from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
+from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID, DEFAULT_THUMBNAIL
 from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
@@ -40,8 +38,8 @@ class IsraelTVMediaSource(MediaSource):
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia:
         """Resolve a channel to a playable HLS URL.
 
-        - Static channels (Sport 5, broadcasts, etc.) are proxied through
-          HA's stream component for smooth buffering (like VLC).
+        - Static channels (Sport 5, broadcasts, etc.) return the direct
+          CloudFront CDN URL which is publicly accessible.
         - YES Sport channels are scraped from nextbet7.tv on demand, with
           the token cached for 4 minutes and refreshed transparently.
         """
@@ -68,24 +66,14 @@ class IsraelTVMediaSource(MediaSource):
         return PlayMedia(proxy_url, HLS_MIME_TYPE)
 
     async def _resolve_static(self, channel: Channel) -> PlayMedia:
-        """Resolve a static CDN channel via HA stream proxy."""
-        try:
-            stream = create_stream(
-                self.hass,
-                channel.url,
-                options={},
-                dynamic_stream_settings=DynamicStreamSettings(),
-                stream_label=channel.name_en,
-            )
-            stream.add_provider(HLS_PROVIDER)
-            url = stream.endpoint_url(HLS_PROVIDER)
-            _LOGGER.debug("Stream proxy active for %s → %s", channel.id, url)
-            return PlayMedia(url, HLS_MIME_TYPE)
-        except Exception:  # noqa: BLE001
-            _LOGGER.warning(
-                "Stream proxy failed for %s, falling back to direct CDN URL", channel.id
-            )
-            return PlayMedia(channel.url, HLS_MIME_TYPE)
+        """Return the direct CDN URL for playback.
+
+        The free-TV CDN (CloudFront) is publicly accessible without special
+        headers, so returning the URL directly is simpler and more reliable
+        than routing through HA's ffmpeg stream proxy.
+        """
+        _LOGGER.debug("Serving static channel %s → %s", channel.id, channel.url)
+        return PlayMedia(channel.url, HLS_MIME_TYPE)
 
     async def async_browse_media(
         self,
@@ -161,5 +149,5 @@ class IsraelTVMediaSource(MediaSource):
             title=channel.name,
             can_play=True,
             can_expand=False,
-            thumbnail=channel.thumbnail,
+            thumbnail=channel.thumbnail or DEFAULT_THUMBNAIL,
         )
