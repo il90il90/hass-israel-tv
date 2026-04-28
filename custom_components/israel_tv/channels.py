@@ -32,9 +32,10 @@ CATEGORY_LABELS: dict[str, str] = {
 
 _CDN = "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live"
 
-# Base URL for logos served as static assets by the HA HTTP component.
-# Files live in custom_components/israel_tv/logos/ and are registered in __init__.py.
-_LOGO = "/israel_tv/logos/{}.png"
+_LOGO_BASE = (
+    "https://raw.githubusercontent.com/il90il90/hass-israel-tv"
+    "/main/custom_components/israel_tv/logos/{}.png"
+)
 
 
 def _cdn(slug: str) -> str:
@@ -44,8 +45,8 @@ def _cdn(slug: str) -> str:
 
 
 def _logo(name: str) -> str:
-    """Return the local HA path for a logo PNG file."""
-    return _LOGO.format(name)
+    """Return a GitHub-raw CDN URL for a logo PNG."""
+    return _LOGO_BASE.format(name)
 
 
 CHANNELS: list[Channel] = [
