@@ -19,6 +19,19 @@ from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
 
+# HA shows a built-in MDI icon automatically based on MediaClass.
+# Map each category to the most representative class.
+_CATEGORY_MEDIA_CLASS: dict[str, MediaClass] = {
+    "broadcast": MediaClass.CHANNEL,
+    "sport":     MediaClass.CHANNEL,
+    "viva":      MediaClass.TV_SHOW,
+    "reality":   MediaClass.TV_SHOW,
+    "music":     MediaClass.MUSIC,
+    "kids":      MediaClass.TV_SHOW,
+    "lifestyle": MediaClass.TV_SHOW,
+    "movies":    MediaClass.MOVIE,
+}
+
 
 async def async_get_media_source(hass: HomeAssistant) -> IsraelTVMediaSource:
     """Return the Israel TV media source."""
@@ -112,11 +125,16 @@ class IsraelTVMediaSource(MediaSource):
         )
 
     def _build_category_stub(self, category: str, label: str) -> BrowseMediaSource:
-        """Return a non-expanded category node (used inside the root listing)."""
+        """Return a non-expanded category node (used inside the root listing).
+
+        Uses a content-specific MediaClass so HA's frontend displays the
+        matching MDI icon automatically — no external image needed.
+        """
+        media_class = _CATEGORY_MEDIA_CLASS.get(category, MediaClass.DIRECTORY)
         return BrowseMediaSource(
             domain=DOMAIN,
             identifier=category,
-            media_class=MediaClass.DIRECTORY,
+            media_class=media_class,
             media_content_type=MediaType.CHANNEL,
             title=label,
             can_play=False,
