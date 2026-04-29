@@ -11,12 +11,15 @@ from homeassistant.core import HomeAssistant
 from .const import DOMAIN
 from .proxy import YesSportPlaylistView, YesSportSegmentView
 
-PLATFORMS = ["camera"]
+PLATFORMS: list[str] = []  # no entity platforms — widget is pure frontend
 
 _LOGGER = logging.getLogger(__name__)
 
-# Track whether the HTTP views have been registered (they survive config reloads)
+# Track whether HTTP views / static paths / card JS have been registered
 _VIEWS_REGISTERED = False
+
+# URL path at which the Lovelace card JS is served from HA's HTTP server
+_CARD_URL = "/israel_tv/frontend/israel-tv-card.js"
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
@@ -32,13 +35,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = entry.data
 
-    # Register HTTP views and static assets once per HA instance lifetime
+    # Register HTTP views, static assets and Lovelace card — once per HA lifetime
     if not _VIEWS_REGISTERED:
         hass.http.register_view(YesSportPlaylistView())
         hass.http.register_view(YesSportSegmentView())
-        # async_register_static_paths (HA ≥ 2024.x) — fall back to the
-        # older synchronous API for installations running an earlier version.
-        logos_path = Path(__file__).parent / "logos"
+
+        logos_path    = Path(__file__).parent / "logos"
+        frontend_path = Path(__file__).parent / "frontend"
+
+        # async_register_static_paths (HA ≥ 2024.x) with fallback for older builds
         try:
             from homeassistant.components.http import StaticPathConfig  # noqa: PLC0415
             await hass.http.async_register_static_paths([
@@ -46,22 +51,41 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                     url_path="/israel_tv/logos",
                     path=logos_path,
                     cache_headers=True,
-                )
+                ),
+                StaticPathConfig(
+                    url_path="/israel_tv/frontend",
+                    path=frontend_path,
+                    cache_headers=False,  # allow hot-reload of card JS during dev
+                ),
             ])
         except (ImportError, AttributeError):
             hass.http.register_static_path(
                 "/israel_tv/logos", str(logos_path), cache_headers=True
             )
-        _VIEWS_REGISTERED = True
-        _LOGGER.debug("YES Sport HLS proxy views and logo assets registered")
+            hass.http.register_static_path(
+                "/israel_tv/frontend", str(frontend_path), cache_headers=False
+            )
 
-    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+        # Auto-register the card with the HA Lovelace frontend so it appears
+        # in the card picker without any manual resource setup.
+        try:
+            from homeassistant.components.frontend import add_extra_js_url  # noqa: PLC0415
+            add_extra_js_url(hass, _CARD_URL)
+            _LOGGER.debug("Israel TV card registered at %s", _CARD_URL)
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning(
+                "Could not auto-register Lovelace card. "
+                "Add %s manually under Dashboard → Resources.", _CARD_URL
+            )
+
+        _VIEWS_REGISTERED = True
+        _LOGGER.debug("Israel TV HTTP views, static paths and Lovelace card registered")
+
     _LOGGER.debug("Israel TV integration loaded (entry_id=%s)", entry.entry_id)
     return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
-    await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     hass.data[DOMAIN].pop(entry.entry_id, None)
     return True
