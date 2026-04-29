@@ -336,6 +336,14 @@ CHANNELS: list[Channel] = [
     ),
     # ── Lifestyle ──────────────────────────────────────────────────────────────
     Channel(
+        id="hidabroot",
+        name="הידברות",
+        name_en="Hidabroot",
+        category="lifestyle",
+        url="https://htv-live.cybercdn.live/HidabrootIL/Live97/HidabrootIL/Live97_720p/chunks.m3u8",
+        thumbnail=_logo("hidabroot"),
+    ),
+    Channel(
         id="foody",
         name="פודי",
         name_en="Foody",
