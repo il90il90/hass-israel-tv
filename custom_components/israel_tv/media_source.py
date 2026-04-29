@@ -15,6 +15,23 @@ from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
 from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
+
+_LOGO_BASE = (
+    "https://raw.githubusercontent.com/il90il90/hass-israel-tv"
+    "/main/custom_components/israel_tv/logos/{}.png"
+)
+
+# Thumbnail for each root category folder
+_CATEGORY_THUMBNAILS: dict[str, str] = {
+    "broadcast": _LOGO_BASE.format("cat_broadcast"),
+    "sport":     _LOGO_BASE.format("cat_sport"),
+    "viva":      _LOGO_BASE.format("cat_viva"),
+    "reality":   _LOGO_BASE.format("cat_reality"),
+    "music":     _LOGO_BASE.format("cat_music"),
+    "kids":      _LOGO_BASE.format("cat_kids"),
+    "lifestyle": _LOGO_BASE.format("cat_lifestyle"),
+    "movies":    _LOGO_BASE.format("cat_movies"),
+}
 from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
@@ -121,6 +138,7 @@ class IsraelTVMediaSource(MediaSource):
             title=label,
             can_play=False,
             can_expand=True,
+            thumbnail=_CATEGORY_THUMBNAILS.get(category),
         )
 
     def _build_category(self, category: str) -> BrowseMediaSource:
