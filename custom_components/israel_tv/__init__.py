@@ -11,6 +11,8 @@ from homeassistant.core import HomeAssistant
 from .const import DOMAIN
 from .proxy import YesSportPlaylistView, YesSportSegmentView
 
+PLATFORMS = ["camera"]
+
 _LOGGER = logging.getLogger(__name__)
 
 # Track whether the HTTP views have been registered (they survive config reloads)
@@ -53,11 +55,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         _VIEWS_REGISTERED = True
         _LOGGER.debug("YES Sport HLS proxy views and logo assets registered")
 
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     _LOGGER.debug("Israel TV integration loaded (entry_id=%s)", entry.entry_id)
     return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
+    await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     hass.data[DOMAIN].pop(entry.entry_id, None)
     return True
