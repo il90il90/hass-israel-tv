@@ -389,7 +389,6 @@ CHANNELS: list[Channel] = [
         name_en="30A Golf Kingdom",
         category="sport_global",
         url="https://30a-tv.com/feeds/vidaa/golf.m3u8",
-        thumbnail="https://golfkingdom.net/wp-content/uploads/2022/04/golf-kingdom-st.jpg",
     ),
     Channel(
         id="sg_accdn",
@@ -397,7 +396,7 @@ CHANNELS: list[Channel] = [
         name_en="ACCDN",
         category="sport_global",
         url="https://raycom-accdn-firetv.amagi.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/V6Kaqha.png",
+        thumbnail="/israel_tv/logos/sg_accdn.png",
     ),
     Channel(
         id="sg_aci_sport_tv",
@@ -405,7 +404,7 @@ CHANNELS: list[Channel] = [
         name_en="ACI Sport TV",
         category="sport_global",
         url="https://webstream.multistream.it/memfs/e2cb3629-c1a2-495b-b43a-9eb386f04ed8.m3u8",
-        thumbnail="https://i.imgur.com/U8cHMOt.png",
+        thumbnail="/israel_tv/logos/sg_aci_sport_tv.png",
     ),
     Channel(
         id="sg_ado_tv",
@@ -413,7 +412,7 @@ CHANNELS: list[Channel] = [
         name_en="ADO TV",
         category="sport_global",
         url="https://strhls.streamakaci.tv/ortb/ortb2-multi/playlist.m3u8",
-        thumbnail="https://i.imgur.com/pxFamLr.png",
+        thumbnail="/israel_tv/logos/sg_ado_tv.png",
     ),
     Channel(
         id="sg_africa_24_sport",
@@ -421,7 +420,6 @@ CHANNELS: list[Channel] = [
         name_en="Africa 24 Sport",
         category="sport_global",
         url="https://africa24.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u8",
-        thumbnail="https://i0.wp.com/africa24tv.com/wp-content/uploads/2023/12/LOGO-AFRICASPORT-4-HD-sans-fond.png?fit=512%2C107&ssl=1",
     ),
     Channel(
         id="sg_alkass_one",
@@ -429,7 +427,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass One",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass1-p/main.m3u8",
-        thumbnail="https://i.imgur.com/10mmlha.png",
+        thumbnail="/israel_tv/logos/sg_alkass_one.png",
     ),
     Channel(
         id="sg_alkass_two",
@@ -437,7 +435,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Two",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass2-p/main.m3u8",
-        thumbnail="https://i.imgur.com/8w61kFX.png",
+        thumbnail="/israel_tv/logos/sg_alkass_two.png",
     ),
     Channel(
         id="sg_alkass_three",
@@ -445,7 +443,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Three",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass3-p/main.m3u8",
-        thumbnail="https://i.imgur.com/d57BdFh.png",
+        thumbnail="/israel_tv/logos/sg_alkass_three.png",
     ),
     Channel(
         id="sg_alkass_four",
@@ -453,7 +451,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Four",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass4-p/main.m3u8",
-        thumbnail="https://i.imgur.com/iDL65Wu.png",
+        thumbnail="/israel_tv/logos/sg_alkass_four.png",
     ),
     Channel(
         id="sg_alkass_five",
@@ -461,7 +459,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Five",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass5-p/main.m3u8",
-        thumbnail="https://i.imgur.com/6RGNGsM.png",
+        thumbnail="/israel_tv/logos/sg_alkass_five.png",
     ),
     Channel(
         id="sg_alkass_six",
@@ -469,7 +467,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Six",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass6-p/main.m3u8",
-        thumbnail="https://i.imgur.com/CrPSPSC.png",
+        thumbnail="/israel_tv/logos/sg_alkass_six.png",
     ),
     Channel(
         id="sg_alkass_seven",
@@ -477,7 +475,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass Seven",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/alkass7-p/main.m3u8",
-        thumbnail="https://i.imgur.com/3eyHP3S.png",
+        thumbnail="/israel_tv/logos/sg_alkass_seven.png",
     ),
     Channel(
         id="sg_alkass_shoof",
@@ -485,7 +483,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass SHOOF",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/shooflive/main.m3u8",
-        thumbnail="https://shoof.alkass.net/assets/images/shoof.png",
+        thumbnail="/israel_tv/logos/sg_alkass_shoof.png",
     ),
     Channel(
         id="sg_alkass_shoof_2",
@@ -493,7 +491,7 @@ CHANNELS: list[Channel] = [
         name_en="Alkass SHOOF 2",
         category="sport_global",
         url="https://liveeu-gcp.alkassdigital.net/shooflive2/main.m3u8",
-        thumbnail="https://shoof.alkass.net/assets/images/shoof2.png",
+        thumbnail="/israel_tv/logos/sg_alkass_shoof_2.png",
     ),
     Channel(
         id="sg_as3_sport_tv",
@@ -501,7 +499,7 @@ CHANNELS: list[Channel] = [
         name_en="AS3 Sport TV",
         category="sport_global",
         url="https://streamtv.as3sport.online:3394/hybrid/play.m3u8",
-        thumbnail="https://i.ibb.co/bRmGbsyV/A3-SPORTTV.jpg",
+        thumbnail="/israel_tv/logos/sg_as3_sport_tv.png",
     ),
     Channel(
         id="sg_atg_live",
@@ -509,7 +507,7 @@ CHANNELS: list[Channel] = [
         name_en="ATG Live",
         category="sport_global",
         url="https://kanal75xto-llhls.akamaized.net/live/Data/atg-kanal-15-02a-rr/HLS-Legacy-HL/atg-kanal-15-02a-rr.m3u8",
-        thumbnail="https://i.imgur.com/bPWFXkL.png",
+        thumbnail="/israel_tv/logos/sg_atg_live.png",
     ),
     Channel(
         id="sg_bahrain_sports_1",
@@ -517,7 +515,7 @@ CHANNELS: list[Channel] = [
         name_en="Bahrain Sports 1",
         category="sport_global",
         url="https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8",
-        thumbnail="https://i.imgur.com/fBpLsbC.png",
+        thumbnail="/israel_tv/logos/sg_bahrain_sports_1.png",
     ),
     Channel(
         id="sg_bahrain_sports_2",
@@ -525,7 +523,7 @@ CHANNELS: list[Channel] = [
         name_en="Bahrain Sports 2",
         category="sport_global",
         url="https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8",
-        thumbnail="https://i.imgur.com/ZkuZmIo.png",
+        thumbnail="/israel_tv/logos/sg_bahrain_sports_2.png",
     ),
     Channel(
         id="sg_bein_sports_xtra_es",
@@ -533,7 +531,7 @@ CHANNELS: list[Channel] = [
         name_en="beIN Sports XTRA en Espanol",
         category="sport_global",
         url="https://dc1644a9jazgj.cloudfront.net/beIN_Sports_Xtra_Espanol.m3u8",
-        thumbnail="https://i.imgur.com/V562tpO.png",
+        thumbnail="/israel_tv/logos/sg_bein_sports_xtra_es.png",
     ),
     Channel(
         id="sg_bek_tv_sports_west",
@@ -541,7 +539,7 @@ CHANNELS: list[Channel] = [
         name_en="BEK TV Sports West",
         category="sport_global",
         url="https://cdn3.wowza.com/5/ZWQ1K2NYTmpFbGsr/BEK-WOWZA-1/smil:BEKPRIMEW.smil/playlist.m3u8",
-        thumbnail="https://i.imgur.com/1l3t5jd.png",
+        thumbnail="/israel_tv/logos/sg_bek_tv_sports_west.png",
     ),
     Channel(
         id="sg_bellator_mma",
@@ -549,7 +547,7 @@ CHANNELS: list[Channel] = [
         name_en="Bellator MMA",
         category="sport_global",
         url="https://jmp2.uk/plu-5ebc8688f3697d00072f7cf8.m3u8",
-        thumbnail="https://i.imgur.com/VBKoLHk.png",
+        thumbnail="/israel_tv/logos/sg_bellator_mma.png",
     ),
     Channel(
         id="sg_cazetv",
@@ -557,7 +555,7 @@ CHANNELS: list[Channel] = [
         name_en="CazeTV",
         category="sport_global",
         url="https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_cazetv.png",
     ),
     Channel(
         id="sg_cctv_16",
@@ -565,7 +563,7 @@ CHANNELS: list[Channel] = [
         name_en="CCTV-16",
         category="sport_global",
         url="http://74.91.26.218:82/live/cctv16hd.m3u8",
-        thumbnail="https://i.imgur.com/ZzV6JQp.png",
+        thumbnail="/israel_tv/logos/sg_cctv_16.png",
     ),
     Channel(
         id="sg_cdn_deportes",
@@ -573,7 +571,7 @@ CHANNELS: list[Channel] = [
         name_en="CDN Deportes",
         category="sport_global",
         url="http://200.125.170.122:8000/play/a03j/index.m3u8",
-        thumbnail="https://i.imgur.com/yU5LqTL.png",
+        thumbnail="/israel_tv/logos/sg_cdn_deportes.png",
     ),
     Channel(
         id="sg_colimdot_tv",
@@ -581,7 +579,7 @@ CHANNELS: list[Channel] = [
         name_en="ColimdoT TV",
         category="sport_global",
         url="https://cnn.livestreaminggroup.info:3132/live/colimdotvlive.m3u8",
-        thumbnail="https://i.imgur.com/ZeUgLCa.png",
+        thumbnail="/israel_tv/logos/sg_colimdot_tv.png",
     ),
     Channel(
         id="sg_cricket_gold",
@@ -589,7 +587,7 @@ CHANNELS: list[Channel] = [
         name_en="Cricket Gold",
         category="sport_global",
         url="https://streams2.sofast.tv/scheduler/scheduleMaster/418.m3u8",
-        thumbnail="https://resources.cricket-australia.pulselive.com/cricket-australia/photo/2025/07/25/836eddae-4329-4542-ad17-dcd37e9d951a/Cricket-Gold-1920x1080_noBG.png",
+        thumbnail="/israel_tv/logos/sg_cricket_gold.png",
     ),
     Channel(
         id="sg_ct_sport",
@@ -597,7 +595,7 @@ CHANNELS: list[Channel] = [
         name_en="CT Sport",
         category="sport_global",
         url="http://88.212.15.19/live/test_ctsport_25p/playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/%C4%8CT_sport_logo.png/960px-%C4%8CT_sport_logo.png",
+        thumbnail="/israel_tv/logos/sg_ct_sport.png",
     ),
     Channel(
         id="sg_dazn_combat",
@@ -605,7 +603,7 @@ CHANNELS: list[Channel] = [
         name_en="DAZN Combat",
         category="sport_global",
         url="https://dazn-combat-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-dazn-combat-rakuten/CDN/master.m3u8",
-        thumbnail="https://i.postimg.cc/VsW3Jsrz/logo-DAZN-Combat.png",
+        thumbnail="/israel_tv/logos/sg_dazn_combat.png",
     ),
     Channel(
         id="sg_dd_sports_sd",
@@ -613,7 +611,7 @@ CHANNELS: list[Channel] = [
         name_en="DD Sports SD",
         category="sport_global",
         url="https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8",
-        thumbnail="https://dtil.tmsimg.com/assets/s158255_ld_h15_aa.png?lock=720x540",
+        thumbnail="/israel_tv/logos/sg_dd_sports_sd.png",
     ),
     Channel(
         id="sg_deportes_tvc",
@@ -621,7 +619,7 @@ CHANNELS: list[Channel] = [
         name_en="Deportes TVC",
         category="sport_global",
         url="http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTYXmD-MOS3u5IUkeXPpBt80/m3u8",
-        thumbnail="https://i.imgur.com/Y1t8xkL.png",
+        thumbnail="/israel_tv/logos/sg_deportes_tvc.png",
     ),
     Channel(
         id="sg_dong_nai_2",
@@ -629,7 +627,7 @@ CHANNELS: list[Channel] = [
         name_en="Dong Nai 2",
         category="sport_global",
         url="http://118.107.85.4:1935/live/smil:DNTV2.smil/chunklist.m3u8",
-        thumbnail="https://i.imgur.com/tNKPSkO.png",
+        thumbnail="/israel_tv/logos/sg_dong_nai_2.png",
     ),
     Channel(
         id="sg_draftkings_network",
@@ -637,7 +635,7 @@ CHANNELS: list[Channel] = [
         name_en="DraftKings Network",
         category="sport_global",
         url="https://na.linear.zype.com/e0bd0e23-a958-4e43-8164-4f2fef8876a8/fd3614bd-90bf-4530-a277-65ae3a1720c8-zype/live.m3u8",
-        thumbnail="https://i.imgur.com/SFYhgrt.png",
+        thumbnail="/israel_tv/logos/sg_draftkings_network.png",
     ),
     Channel(
         id="sg_equidia",
@@ -645,7 +643,7 @@ CHANNELS: list[Channel] = [
         name_en="Equidia",
         category="sport_global",
         url="https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/equidia/live2.m3u8",
-        thumbnail="https://i.imgur.com/QPpbRcZ.png",
+        thumbnail="/israel_tv/logos/sg_equidia.png",
     ),
     Channel(
         id="sg_ert_sports_1",
@@ -653,7 +651,7 @@ CHANNELS: list[Channel] = [
         name_en="ERT Sports 1",
         category="sport_global",
         url="http://hbbtvapp.ert.gr/stream.php/v/vid_ertsports_mpeg.2ts",
-        thumbnail="https://i.imgur.com/EsczO2H.png",
+        thumbnail="/israel_tv/logos/sg_ert_sports_1.png",
     ),
     Channel(
         id="sg_ert_sports_2",
@@ -661,7 +659,7 @@ CHANNELS: list[Channel] = [
         name_en="ERT Sports 2",
         category="sport_global",
         url="http://hbbtvapp.ert.gr/stream.php/v/vid_ertplay2_mpeg.2ts",
-        thumbnail="https://i.imgur.com/b2SNQPi.png",
+        thumbnail="/israel_tv/logos/sg_ert_sports_2.png",
     ),
     Channel(
         id="sg_espn8_the_ocho",
@@ -669,7 +667,7 @@ CHANNELS: list[Channel] = [
         name_en="ESPN8 The Ocho",
         category="sport_global",
         url="https://d3b6q2ou5kp8ke.cloudfront.net/ESPNTheOcho.m3u8",
-        thumbnail="https://images.fubo.tv/channel-config-ui/station-logos/on-dark/espn_8_the_ocho_bw.png",
+        thumbnail="/israel_tv/logos/sg_espn8_the_ocho.png",
     ),
     Channel(
         id="sg_esport3",
@@ -677,7 +675,7 @@ CHANNELS: list[Channel] = [
         name_en="Esport3",
         category="sport_global",
         url="https://directes-tv-int.3catdirectes.cat/live-content/esport3-hls/master.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Esport3.svg/960px-Esport3.svg.png",
+        thumbnail="/israel_tv/logos/sg_esport3.png",
     ),
     Channel(
         id="sg_fanduel_racing",
@@ -685,7 +683,7 @@ CHANNELS: list[Channel] = [
         name_en="FanDuel Racing",
         category="sport_global",
         url="https://d3ehq1uaxory6w.cloudfront.net/out/v1/35c05f080f4e49a4b4eb031b5a14e505/TVG2index_2.m3u8",
-        thumbnail="https://i.imgur.com/84lMjSj.png",
+        thumbnail="/israel_tv/logos/sg_fanduel_racing.png",
     ),
     Channel(
         id="sg_fanduel_tv",
@@ -693,7 +691,7 @@ CHANNELS: list[Channel] = [
         name_en="FanDuel TV",
         category="sport_global",
         url="https://d2jl8r92tdc3f1.cloudfront.net/out/v1/59419700344b4625b7cb0693ba265ea3/TVGindex_1.m3u8",
-        thumbnail="https://i.imgur.com/YPHrFU0.png",
+        thumbnail="/israel_tv/logos/sg_fanduel_tv.png",
     ),
     Channel(
         id="sg_fb_tv",
@@ -709,7 +707,7 @@ CHANNELS: list[Channel] = [
         name_en="FloRacing 24/7",
         category="sport_global",
         url="https://amg02278-amg02278c1-flosports-worldwide-7592.playouts.now.amagi.tv/playlist.m3u8",
-        thumbnail="https://a.jsrdn.com/hls/22883/floracing-247/logo_20231219_225054_24.png",
+        thumbnail="/israel_tv/logos/sg_floracing_247.png",
     ),
     Channel(
         id="sg_fox_sports",
@@ -717,7 +715,7 @@ CHANNELS: list[Channel] = [
         name_en="Fox Sports",
         category="sport_global",
         url="http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/960px-FOX_Sports_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_fox_sports.png",
     ),
     Channel(
         id="sg_fox_sports_es",
@@ -725,7 +723,7 @@ CHANNELS: list[Channel] = [
         name_en="Fox Sports en Espanol",
         category="sport_global",
         url="https://live-manifest.production-public.tubi.io/live/d906efca-1302-4e29-b0d9-9a1d7a305d69/playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png",
+        thumbnail="/israel_tv/logos/sg_fox_sports_es.png",
     ),
     Channel(
         id="sg_ftf_sports",
@@ -733,7 +731,7 @@ CHANNELS: list[Channel] = [
         name_en="FTF Sports",
         category="sport_global",
         url="https://1657061170.rsc.cdn77.org/HLS/FTF-LINEAR.m3u8",
-        thumbnail="https://i.imgur.com/yvUjOI3.png",
+        thumbnail="/israel_tv/logos/sg_ftf_sports.png",
     ),
     Channel(
         id="sg_ftv",
@@ -741,7 +739,7 @@ CHANNELS: list[Channel] = [
         name_en="FTV",
         category="sport_global",
         url="https://master.tucableip.com/ftvhd/index.m3u8",
-        thumbnail="https://i.imgur.com/YOr1Oac.png",
+        thumbnail="/israel_tv/logos/sg_ftv.png",
     ),
     Channel(
         id="sg_fubo_sports",
@@ -749,7 +747,7 @@ CHANNELS: list[Channel] = [
         name_en="fubo Sports Network",
         category="sport_global",
         url="https://dnf08l6u6uxnz.cloudfront.net/master.m3u8",
-        thumbnail="https://i.imgur.com/qFNRJLb.png",
+        thumbnail="/israel_tv/logos/sg_fubo_sports.png",
     ),
     Channel(
         id="sg_fuel_tv",
@@ -757,7 +755,7 @@ CHANNELS: list[Channel] = [
         name_en="Fuel TV",
         category="sport_global",
         url="https://amg01074-fueltv-fueltvau-samsungau-g09kq.amagi.tv/playlist/amg01074-fueltv-fueltvau-samsungau/playlist.m3u8",
-        thumbnail="https://i.imgur.com/I8mviBy.png",
+        thumbnail="/israel_tv/logos/sg_fuel_tv.png",
     ),
     Channel(
         id="sg_fuel_tv_emea",
@@ -765,7 +763,7 @@ CHANNELS: list[Channel] = [
         name_en="FUEL TV EMEA",
         category="sport_global",
         url="https://amg01074-fueltv-fueltvemeaen-rakuten-b6j62.amagi.tv/hls/amagi_hls_data_rakutenAA-fueltvemeaen/CDN/master.m3u8",
-        thumbnail="https://i.imgur.com/I8mviBy.png",
+        thumbnail="/israel_tv/logos/sg_fuel_tv_emea.png",
     ),
     Channel(
         id="sg_futbol",
@@ -773,7 +771,7 @@ CHANNELS: list[Channel] = [
         name_en="Futbol",
         category="sport_global",
         url="https://live.teleradiocom.tj/8/3m.m3u8",
-        thumbnail="https://i.imgur.com/RngmCDn.png",
+        thumbnail="/israel_tv/logos/sg_futbol.png",
     ),
     Channel(
         id="sg_game_plus",
@@ -781,7 +779,7 @@ CHANNELS: list[Channel] = [
         name_en="Game+",
         category="sport_global",
         url="https://a-cdn.klowdtv.com/live2/fntsy_720p/playlist.m3u8",
-        thumbnail="https://i.imgur.com/Lj69WbR.png",
+        thumbnail="/israel_tv/logos/sg_game_plus.png",
     ),
     Channel(
         id="sg_gem_fit",
@@ -789,7 +787,7 @@ CHANNELS: list[Channel] = [
         name_en="GEM Fit",
         category="sport_global",
         url="https://ca-rt.onetv.app/gemfit/index-0.m3u8?token=onetv202",
-        thumbnail="https://i.imgur.com/7FQxaII.png",
+        thumbnail="/israel_tv/logos/sg_gem_fit.png",
     ),
     Channel(
         id="sg_goal_zone",
@@ -797,7 +795,7 @@ CHANNELS: list[Channel] = [
         name_en="Goal Zone",
         category="sport_global",
         url="https://shls-live-enc.edgenextcdn.net/out/v1/18cffab0757d448ca6c1a686d330b346/index.m3u8",
-        thumbnail="https://shahid.mbc.net/mediaObject/18bf9987-49ab-4c51-bb94-c568efa51db7?height=auto&width=512&croppingPoint=&version=1&type=png",
+        thumbnail="/israel_tv/logos/sg_goal_zone.png",
     ),
     Channel(
         id="sg_gol_classics",
@@ -805,7 +803,6 @@ CHANNELS: list[Channel] = [
         name_en="Gol Classics",
         category="sport_global",
         url="https://d71gqtnep83vb.cloudfront.net/gol_classics/gol_classics.m3u8",
-        thumbnail="https://golstadium.com/_next/image?url=%2Fimg%2Fhome%2Fchannels%2Fthumb-gol-classics.jpg&w=1920&q=75",
     ),
     Channel(
         id="sg_golf_channel_latam",
@@ -813,7 +810,7 @@ CHANNELS: list[Channel] = [
         name_en="Golf Channel Latin America",
         category="sport_global",
         url="http://181.114.57.246:4000/play/BHGDIhvdyuw/index.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Golf_Channel_Logo_2018.png/960px-Golf_Channel_Logo_2018.png",
+        thumbnail="/israel_tv/logos/sg_golf_channel_latam.png",
     ),
     Channel(
         id="sg_horse_tv",
@@ -821,7 +818,7 @@ CHANNELS: list[Channel] = [
         name_en="Horse TV",
         category="sport_global",
         url="https://a-cdn.klowdtv.com/live2/horsetv_720p/playlist.m3u8",
-        thumbnail="https://i.imgur.com/nK4UUX4.png",
+        thumbnail="/israel_tv/logos/sg_horse_tv.png",
     ),
     Channel(
         id="sg_htspor_tv",
@@ -829,7 +826,7 @@ CHANNELS: list[Channel] = [
         name_en="HTSpor TV",
         category="sport_global",
         url="https://ciner.daioncdn.net/ht-spor/ht-spor.m3u8?app=web",
-        thumbnail="https://www.htspor.com/images/manifest/social-share-logo.png",
+        thumbnail="/israel_tv/logos/sg_htspor_tv.png",
     ),
     Channel(
         id="sg_introuble",
@@ -837,7 +834,7 @@ CHANNELS: list[Channel] = [
         name_en="INTROUBLE",
         category="sport_global",
         url="https://amg00861-amg00861c6-stirr-us-8229.playouts.now.amagi.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/a40chFI.png",
+        thumbnail="/israel_tv/logos/sg_introuble.png",
     ),
     Channel(
         id="sg_itv_deportes",
@@ -845,7 +842,7 @@ CHANNELS: list[Channel] = [
         name_en="ITV Deportes",
         category="sport_global",
         url="https://thm-it-roku.otteravision.com/thm/it/it.m3u8",
-        thumbnail="https://iili.io/J1kV1Bn.png",
+        thumbnail="/israel_tv/logos/sg_itv_deportes.png",
     ),
     Channel(
         id="sg_jordan_sport",
@@ -853,7 +850,7 @@ CHANNELS: list[Channel] = [
         name_en="Jordan Sport",
         category="sport_global",
         url="http://93.184.10.248/JordanSport/index.m3u8",
-        thumbnail="https://i.imgur.com/2EmrZPQ.png",
+        thumbnail="/israel_tv/logos/sg_jordan_sport.png",
     ),
     Channel(
         id="sg_kcmn_ld6",
@@ -861,7 +858,6 @@ CHANNELS: list[Channel] = [
         name_en="KCMN-LD6",
         category="sport_global",
         url="https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg02873-kravemedia-mtrspt1-distrotv/playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QVC_logo_2019.svg/960px-QVC_logo_2019.svg.png",
     ),
     Channel(
         id="sg_khl",
@@ -869,7 +865,7 @@ CHANNELS: list[Channel] = [
         name_en="KHL",
         category="sport_global",
         url="http://31.148.48.15/KHL_TV/index.m3u8",
-        thumbnail="https://i.imgur.com/RgdHdOV.png",
+        thumbnail="/israel_tv/logos/sg_khl.png",
     ),
     Channel(
         id="sg_khl_prime",
@@ -877,7 +873,7 @@ CHANNELS: list[Channel] = [
         name_en="KHL Prime",
         category="sport_global",
         url="http://31.148.48.15/KHL_TV_HD/index.m3u8",
-        thumbnail="https://i.imgur.com/pwxT0ON.png",
+        thumbnail="/israel_tv/logos/sg_khl_prime.png",
     ),
     Channel(
         id="sg_ktv_sport",
@@ -885,7 +881,7 @@ CHANNELS: list[Channel] = [
         name_en="KTV Sport",
         category="sport_global",
         url="https://kwtspta.cdn.mangomolo.com/sp/smil:sp.stream.smil/chunklist.m3u8",
-        thumbnail="https://i.imgur.com/R1hGX1d.png",
+        thumbnail="/israel_tv/logos/sg_ktv_sport.png",
     ),
     Channel(
         id="sg_ktv_sport_plus",
@@ -893,7 +889,7 @@ CHANNELS: list[Channel] = [
         name_en="KTV Sport Plus",
         category="sport_global",
         url="https://kwtsplta.cdn.mangomolo.com/spl/smil:spl.stream.smil/chunklist.m3u8",
-        thumbnail="https://i.imgur.com/l4oX0gf.png",
+        thumbnail="/israel_tv/logos/sg_ktv_sport_plus.png",
     ),
     Channel(
         id="sg_laliga_tv",
@@ -901,7 +897,7 @@ CHANNELS: list[Channel] = [
         name_en="LaLiga TV",
         category="sport_global",
         url="http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTZID4SFOqZLZ81NguVP-JxM/m3u8",
-        thumbnail="https://i.imgur.com/ilay5Jr.png",
+        thumbnail="/israel_tv/logos/sg_laliga_tv.png",
     ),
     Channel(
         id="sg_lucha_libre_aaa",
@@ -909,7 +905,7 @@ CHANNELS: list[Channel] = [
         name_en="Lucha Libre AAA",
         category="sport_global",
         url="https://jmp2.uk/plu-5c01df1759ee03633e7b272c.m3u8",
-        thumbnail="https://i.imgur.com/Nc7K060.png",
+        thumbnail="/israel_tv/logos/sg_lucha_libre_aaa.png",
     ),
     Channel(
         id="sg_mnet_sport",
@@ -917,7 +913,7 @@ CHANNELS: list[Channel] = [
         name_en="M-Net Sport",
         category="sport_global",
         url="http://ares.mnet.mk/hls/mnet-sport.m3u8",
-        thumbnail="https://i.imgur.com/7k8ar1Z.png",
+        thumbnail="/israel_tv/logos/sg_mnet_sport.png",
     ),
     Channel(
         id="sg_madeinbo_tv",
@@ -925,7 +921,7 @@ CHANNELS: list[Channel] = [
         name_en="MadeinBO TV",
         category="sport_global",
         url="https://srvx1.selftv.video/dmchannel/live/playlist.m3u8",
-        thumbnail="https://i.imgur.com/47X44DD.png",
+        thumbnail="/israel_tv/logos/sg_madeinbo_tv.png",
     ),
     Channel(
         id="sg_match_strana",
@@ -933,7 +929,7 @@ CHANNELS: list[Channel] = [
         name_en="Match! Strana",
         category="sport_global",
         url="http://31.148.48.15/Match_Strana/index.m3u8",
-        thumbnail="https://i.imgur.com/X02s2UE.png",
+        thumbnail="/israel_tv/logos/sg_match_strana.png",
     ),
     Channel(
         id="sg_mma_tv_com",
@@ -941,7 +937,7 @@ CHANNELS: list[Channel] = [
         name_en="MMA TV.com",
         category="sport_global",
         url="https://streams2.sofast.tv/vglive-sk-462904/playlist.m3u8",
-        thumbnail="https://i.imgur.com/QhdxNsB.png",
+        thumbnail="/israel_tv/logos/sg_mma_tv_com.png",
     ),
     Channel(
         id="sg_mma_tv",
@@ -949,7 +945,7 @@ CHANNELS: list[Channel] = [
         name_en="MMA-TV",
         category="sport_global",
         url="http://31.148.48.15/M1_Global/index.m3u8",
-        thumbnail="https://i.imgur.com/Qxco1eW.png",
+        thumbnail="/israel_tv/logos/sg_mma_tv.png",
     ),
     Channel(
         id="sg_mnb_sport",
@@ -957,7 +953,7 @@ CHANNELS: list[Channel] = [
         name_en="MNB Sport",
         category="sport_global",
         url="https://live.mnb.mn/hls/mnb_sport.stream.m3u8",
-        thumbnail="https://i.imgur.com/z854PC3.png",
+        thumbnail="/israel_tv/logos/sg_mnb_sport.png",
     ),
     Channel(
         id="sg_monterrico_tv",
@@ -965,7 +961,7 @@ CHANNELS: list[Channel] = [
         name_en="Monterrico TV",
         category="sport_global",
         url="https://www.opencaster.com/resources/hls_stream/hipodromojcp2.m3u8",
-        thumbnail="https://i.imgur.com/SuVO9T7.png",
+        thumbnail="/israel_tv/logos/sg_monterrico_tv.png",
     ),
     Channel(
         id="sg_more_than_sports",
@@ -973,7 +969,7 @@ CHANNELS: list[Channel] = [
         name_en="More Than Sports TV",
         category="sport_global",
         url="https://mts1.iptv-playoutcenter.de/mts/mts-web/playlist.m3u8",
-        thumbnail="https://i.imgur.com/SLrjImc.png",
+        thumbnail="/israel_tv/logos/sg_more_than_sports.png",
     ),
     Channel(
         id="sg_multivision_sports",
@@ -981,7 +977,7 @@ CHANNELS: list[Channel] = [
         name_en="Multivision Sports",
         category="sport_global",
         url="https://stream.digitalgt.com:3605/live/multivisionsportslive.m3u8",
-        thumbnail="https://i.imgur.com/wLjSSo2.jpg",
+        thumbnail="/israel_tv/logos/sg_multivision_sports.png",
     ),
     Channel(
         id="sg_nautical_channel",
@@ -989,7 +985,7 @@ CHANNELS: list[Channel] = [
         name_en="Nautical Channel",
         category="sport_global",
         url="https://a-cdn.klowdtv.com/live2/nautical_720p/playlist.m3u8",
-        thumbnail="https://i.imgur.com/2ByDyzL.png",
+        thumbnail="/israel_tv/logos/sg_nautical_channel.png",
     ),
     Channel(
         id="sg_nba_tv_canada",
@@ -997,7 +993,7 @@ CHANNELS: list[Channel] = [
         name_en="NBA TV Canada",
         category="sport_global",
         url="http://user.scalecdn.co:8080/live/54706135/09221986/3092.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/en/a/a4/NBA_TV_Canada_2020.png",
+        thumbnail="/israel_tv/logos/sg_nba_tv_canada.png",
     ),
     Channel(
         id="sg_nhra_tv",
@@ -1005,7 +1001,7 @@ CHANNELS: list[Channel] = [
         name_en="NHRA TV",
         category="sport_global",
         url="https://d265y4sk8257lt.cloudfront.net/nh.m3u8",
-        thumbnail="https://i.imgur.com/jZgcm4k.png",
+        thumbnail="/israel_tv/logos/sg_nhra_tv.png",
     ),
     Channel(
         id="sg_nudge_sports",
@@ -1013,7 +1009,7 @@ CHANNELS: list[Channel] = [
         name_en="Nudge Sports Channel",
         category="sport_global",
         url="https://streams.comclark.com/live_input/nudge_sports/playlist.m3u8",
-        thumbnail="https://i.imgur.com/TW0hapZ.png",
+        thumbnail="/israel_tv/logos/sg_nudge_sports.png",
     ),
     Channel(
         id="sg_oman_sports_tv",
@@ -1021,7 +1017,7 @@ CHANNELS: list[Channel] = [
         name_en="Oman Sports TV",
         category="sport_global",
         url="https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8",
-        thumbnail="https://i.imgur.com/1omi7p8.png",
+        thumbnail="/israel_tv/logos/sg_oman_sports_tv.png",
     ),
     Channel(
         id="sg_ovacion_tv",
@@ -1029,7 +1025,7 @@ CHANNELS: list[Channel] = [
         name_en="Ovacion TV",
         category="sport_global",
         url="http://cdn2.ujjina.com:1935/iptvovacion1/liveovacion1tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/7Xndgxk.png",
+        thumbnail="/israel_tv/logos/sg_ovacion_tv.png",
     ),
     Channel(
         id="sg_overtime",
@@ -1037,7 +1033,7 @@ CHANNELS: list[Channel] = [
         name_en="Overtime",
         category="sport_global",
         url="https://d1a8aq6t30gkqj.cloudfront.net/v1/amc_overtime_1/samsungheadend_us/latest/main/hls/playlist_hd.m3u8",
-        thumbnail="https://i.imgur.com/9S9k4IK.png",
+        thumbnail="/israel_tv/logos/sg_overtime.png",
     ),
     Channel(
         id="sg_pac12_insider",
@@ -1045,7 +1041,7 @@ CHANNELS: list[Channel] = [
         name_en="Pac 12 Insider",
         category="sport_global",
         url="https://pac12-firetv.amagi.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/736QREy.png",
+        thumbnail="/israel_tv/logos/sg_pac12_insider.png",
     ),
     Channel(
         id="sg_pbr_ridepass",
@@ -1053,7 +1049,7 @@ CHANNELS: list[Channel] = [
         name_en="PBR RidePass",
         category="sport_global",
         url="https://jmp2.uk/plu-60d39387706fe50007fda8e8.m3u8",
-        thumbnail="https://i.imgur.com/gUxH97E.png",
+        thumbnail="/israel_tv/logos/sg_pbr_ridepass.png",
     ),
     Channel(
         id="sg_persiana_fight",
@@ -1061,7 +1057,6 @@ CHANNELS: list[Channel] = [
         name_en="Persiana Fight",
         category="sport_global",
         url="https://fighthls.persiana.live/hls/stream.m3u8",
-        thumbnail="https://www.lyngsat.com/logo/tv/pp/persiana-fight-fr.png",
     ),
     Channel(
         id="sg_pga_tour",
@@ -1069,7 +1064,7 @@ CHANNELS: list[Channel] = [
         name_en="PGA Tour",
         category="sport_global",
         url="https://d11k1mnrgfposz.cloudfront.net/playlist.m3u8",
-        thumbnail="https://i.imgur.com/J0TY9dG.png",
+        thumbnail="/israel_tv/logos/sg_pga_tour.png",
     ),
     Channel(
         id="sg_pluto_futbol",
@@ -1077,7 +1072,7 @@ CHANNELS: list[Channel] = [
         name_en="Pluto TV Futbol Para Fans",
         category="sport_global",
         url="https://jmp2.uk/plu-63c6e37e636b7e0007ccb635.m3u8",
-        thumbnail="https://i.imgur.com/yJlY9Rr.png",
+        thumbnail="/israel_tv/logos/sg_pluto_futbol.png",
     ),
     Channel(
         id="sg_polsat_sport_2",
@@ -1085,7 +1080,7 @@ CHANNELS: list[Channel] = [
         name_en="Polsat Sport Premium 2",
         category="sport_global",
         url="http://78.130.250.2:8023/play/a05r/index.m3u8",
-        thumbnail="https://i.imgur.com/myyWeXY.png",
+        thumbnail="/israel_tv/logos/sg_polsat_sport_2.png",
     ),
     Channel(
         id="sg_qazsport",
@@ -1093,7 +1088,7 @@ CHANNELS: list[Channel] = [
         name_en="QazSport",
         category="sport_global",
         url="https://qazsporttv-stream.qazcdn.com/qazsporttv/qazsporttv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/UDJ0P5Q.png",
+        thumbnail="/israel_tv/logos/sg_qazsport.png",
     ),
     Channel(
         id="sg_racer_intl",
@@ -1108,7 +1103,7 @@ CHANNELS: list[Channel] = [
         name_en="Racer Select",
         category="sport_global",
         url="https://amg00378-amg00378c4-freelivesports-emea-5637.playouts.now.amagi.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/CurtYvn.png",
+        thumbnail="/israel_tv/logos/sg_racer_select.png",
     ),
     Channel(
         id="sg_realmadrid_tv",
@@ -1116,7 +1111,7 @@ CHANNELS: list[Channel] = [
         name_en="Realmadrid TV",
         category="sport_global",
         url="https://jmp2.uk/plu-63dac28760bc8f0008a7654b.m3u8",
-        thumbnail="https://i.imgur.com/5pMo7dL.png",
+        thumbnail="/israel_tv/logos/sg_realmadrid_tv.png",
     ),
     Channel(
         id="sg_red_bull_tv",
@@ -1124,7 +1119,7 @@ CHANNELS: list[Channel] = [
         name_en="Red Bull TV",
         category="sport_global",
         url="https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8",
-        thumbnail="https://jiotvimages.cdn.jio.com/dare_images/images/Red_Bull_TV.png",
+        thumbnail="/israel_tv/logos/sg_red_bull_tv.png",
     ),
     Channel(
         id="sg_rti_la_3",
@@ -1132,7 +1127,7 @@ CHANNELS: list[Channel] = [
         name_en="RTI La 3",
         category="sport_global",
         url="http://69.64.57.208/la3/index.m3u8",
-        thumbnail="https://i.imgur.com/HdNshgF.png",
+        thumbnail="/israel_tv/logos/sg_rti_la_3.png",
     ),
     Channel(
         id="sg_san_marino_rtv",
@@ -1140,7 +1135,7 @@ CHANNELS: list[Channel] = [
         name_en="San Marino RTV Sport",
         category="sport_global",
         url="https://d2hrvno5bw6tg2.cloudfront.net/smrtv-ch02/smil:ch-02.smil/master.m3u8",
-        thumbnail="https://i.imgur.com/PGm944g.png",
+        thumbnail="/israel_tv/logos/sg_san_marino_rtv.png",
     ),
     Channel(
         id="sg_sky_racing_1",
@@ -1148,7 +1143,7 @@ CHANNELS: list[Channel] = [
         name_en="Sky Racing 1",
         category="sport_global",
         url="https://636ffd31f0e12.streamlock.net/RacingStream1/RacingStream1/playlist.m3u8",
-        thumbnail="https://i.imgur.com/Hf0EiaW.png",
+        thumbnail="/israel_tv/logos/sg_sky_racing_1.png",
     ),
     Channel(
         id="sg_sky_racing_2",
@@ -1156,7 +1151,7 @@ CHANNELS: list[Channel] = [
         name_en="Sky Racing 2",
         category="sport_global",
         url="https://636ffd31f0e12.streamlock.net/RacingStream2/RacingStream2/playlist.m3u8",
-        thumbnail="https://i.imgur.com/TxQvFnQ.png",
+        thumbnail="/israel_tv/logos/sg_sky_racing_2.png",
     ),
     Channel(
         id="sg_sony_ten_1",
@@ -1164,7 +1159,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 1",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%201.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_1/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_1.png",
     ),
     Channel(
         id="sg_sony_ten_1_hd",
@@ -1172,7 +1167,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 1 HD",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%201%20HD.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_1/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_1_hd.png",
     ),
     Channel(
         id="sg_sony_ten_2",
@@ -1180,7 +1175,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 2",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%202.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_2/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_2.png",
     ),
     Channel(
         id="sg_sony_ten_2_hd",
@@ -1188,7 +1183,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 2 HD",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%202%20HD.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_2/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_2_hd.png",
     ),
     Channel(
         id="sg_sony_ten_3",
@@ -1196,7 +1191,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 3 Hindi",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%203.m3u8",
-        thumbnail="https://dtil.tmsimg.com/assets/GNLZZGG0025TCMR.png?lock=720x540",
+        thumbnail="/israel_tv/logos/sg_sony_ten_3.png",
     ),
     Channel(
         id="sg_sony_ten_3_hd",
@@ -1204,7 +1199,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 3 Hindi HD",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%203%20HD.m3u8",
-        thumbnail="https://dtil.tmsimg.com/assets/GNLZZGG0025TCMR.png?lock=720x540",
+        thumbnail="/israel_tv/logos/sg_sony_ten_3_hd.png",
     ),
     Channel(
         id="sg_sony_ten_4",
@@ -1212,7 +1207,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 4",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%204.m3u8",
-        thumbnail="https://dtil.tmsimg.com/assets/GNLZZGG0025T4PV.png?lock=720x540",
+        thumbnail="/israel_tv/logos/sg_sony_ten_4.png",
     ),
     Channel(
         id="sg_sony_ten_4_hd",
@@ -1220,7 +1215,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 4 Telugu",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%204%20HD.m3u8",
-        thumbnail="https://dtil.tmsimg.com/assets/s149166_ld_h15_aa.png?lock=720x540",
+        thumbnail="/israel_tv/logos/sg_sony_ten_4_hd.png",
     ),
     Channel(
         id="sg_sony_ten_5",
@@ -1228,7 +1223,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 5",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%205.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_5/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_5.png",
     ),
     Channel(
         id="sg_sony_ten_5_hd",
@@ -1236,7 +1231,7 @@ CHANNELS: list[Channel] = [
         name_en="Sony Sports Ten 5 HD",
         category="sport_global",
         url="https://sl.vodep39240327.workers.dev/channel/SONY%20TEN%205%20HD.m3u8",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_5/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_sony_ten_5_hd.png",
     ),
     Channel(
         id="sg_sos_kanal_plus",
@@ -1244,7 +1239,7 @@ CHANNELS: list[Channel] = [
         name_en="SOS Kanal Plus",
         category="sport_global",
         url="https://53be5ef2d13aa.streamlock.net/soskanalplus/soskanalplus.stream/playlist.m3u8",
-        thumbnail="https://i.imgur.com/9SD40uH.png",
+        thumbnail="/israel_tv/logos/sg_sos_kanal_plus.png",
     ),
     Channel(
         id="sg_sport_1",
@@ -1252,7 +1247,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 1",
         category="sport_global",
         url="http://46.149.191.217:9005/play/a017",
-        thumbnail="https://i.imgur.com/X5X3tKC.png",
+        thumbnail="/israel_tv/logos/sg_sport_1.png",
     ),
     Channel(
         id="sg_sport_italia",
@@ -1260,7 +1255,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport Italia",
         category="sport_global",
         url="https://amg01370-italiansportcom-sportitalia-rakuten-3hmdb.amagi.tv/hls/amagi_hls_data_rakutenAA-sportitalia-rakuten/CDN/master.m3u8",
-        thumbnail="https://i.imgur.com/0CJGGgd.png",
+        thumbnail="/israel_tv/logos/sg_sport_italia.png",
     ),
     Channel(
         id="sg_sports_connect",
@@ -1268,7 +1263,7 @@ CHANNELS: list[Channel] = [
         name_en="Sports Connect",
         category="sport_global",
         url="https://streamdot.broadpeak.io/cff02a74da64d1459391ce1f72d58f1a/afxpstr/SportsConnect/index.m3u8",
-        thumbnail="https://i.imgur.com/0sNWg54.png",
+        thumbnail="/israel_tv/logos/sg_sports_connect.png",
     ),
     Channel(
         id="sg_stadium",
@@ -1276,7 +1271,7 @@ CHANNELS: list[Channel] = [
         name_en="Stadium",
         category="sport_global",
         url="https://wurl120sports.global.transmit.live/hls/679a907dce42a042c23ace37/v1/stadium_gracenote/samsung_us/latest/main/hls/playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Stadium_%28sports_network%29_logo.svg/960px-Stadium_%28sports_network%29_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_stadium.png",
     ),
     Channel(
         id="sg_star_sports_1_hd",
@@ -1284,7 +1279,7 @@ CHANNELS: list[Channel] = [
         name_en="Star Sports 1 HD",
         category="sport_global",
         url="http://103.253.18.58:8000/play/a00m",
-        thumbnail="https://i.imgur.com/E5jjKHI.png",
+        thumbnail="/israel_tv/logos/sg_star_sports_1_hd.png",
     ),
     Channel(
         id="sg_star_sports_1_hindi",
@@ -1292,7 +1287,7 @@ CHANNELS: list[Channel] = [
         name_en="Star Sports 1 Hindi",
         category="sport_global",
         url="http://103.253.18.58:8000/play/a03o",
-        thumbnail="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_STAR_SPORTS_1_HINDI/images/LOGO_HD/image.png",
+        thumbnail="/israel_tv/logos/sg_star_sports_1_hindi.png",
     ),
     Channel(
         id="sg_star_sports_2_hindi_hd",
@@ -1300,7 +1295,7 @@ CHANNELS: list[Channel] = [
         name_en="Star Sports 2 Hindi HD",
         category="sport_global",
         url="http://103.157.248.140:8000/play/a01m/index.m3u8",
-        thumbnail="https://i.imgur.com/kHerF19.png",
+        thumbnail="/israel_tv/logos/sg_star_sports_2_hindi_hd.png",
     ),
     Channel(
         id="sg_strongman",
@@ -1308,7 +1303,7 @@ CHANNELS: list[Channel] = [
         name_en="Strongman",
         category="sport_global",
         url="https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/bVQBF6R.png",
+        thumbnail="/israel_tv/logos/sg_strongman.png",
     ),
     Channel(
         id="sg_strongman_champions",
@@ -1316,7 +1311,7 @@ CHANNELS: list[Channel] = [
         name_en="Strongman Champions League",
         category="sport_global",
         url="https://rightsboosterltd-scl-2-eu.rakuten.wurl.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/bVQBF6R.png",
+        thumbnail="/israel_tv/logos/sg_strongman_champions.png",
     ),
     Channel(
         id="sg_suspilne_sport",
@@ -1324,7 +1319,7 @@ CHANNELS: list[Channel] = [
         name_en="Suspilne Sport",
         category="sport_global",
         url="https://cdnua05.hls.tv/934/hls/8743361621b245838bee193c9ec28322/4856/stream.m3u8",
-        thumbnail="https://i.imgur.com/16IhU0M.png",
+        thumbnail="/israel_tv/logos/sg_suspilne_sport.png",
     ),
     Channel(
         id="sg_swerve_combat",
@@ -1332,7 +1327,7 @@ CHANNELS: list[Channel] = [
         name_en="Swerve Combat",
         category="sport_global",
         url="https://linear-253.frequency.stream/mt/roku/253/hls/master/playlist.m3u8",
-        thumbnail="https://i.imgur.com/GT0Yi2T.png",
+        thumbnail="/israel_tv/logos/sg_swerve_combat.png",
     ),
     Channel(
         id="sg_talent_tv",
@@ -1340,7 +1335,7 @@ CHANNELS: list[Channel] = [
         name_en="Talent TV",
         category="sport_global",
         url="http://live.talenttv.lk:8080/hls/x8kd5n3tm8e8lsv/index.m3u8",
-        thumbnail="https://talenttv.lk/logo-footer.png",
+        thumbnail="/israel_tv/logos/sg_talent_tv.png",
     ),
     Channel(
         id="sg_tele_rebelde",
@@ -1348,7 +1343,7 @@ CHANNELS: list[Channel] = [
         name_en="Tele Rebelde",
         category="sport_global",
         url="https://tv.picta.cu/telerebelde/telerebelde_1.m3u8",
-        thumbnail="https://i.imgur.com/M6wZzuz.png",
+        thumbnail="/israel_tv/logos/sg_tele_rebelde.png",
     ),
     Channel(
         id="sg_teledeporte",
@@ -1356,7 +1351,7 @@ CHANNELS: list[Channel] = [
         name_en="Teledeporte",
         category="sport_global",
         url="https://rtvelivestream.rtve.es/rtvesec/tdp/tdp_main.m3u8",
-        thumbnail="https://i.ibb.co/0jxLdjnY/TDP.png",
+        thumbnail="/israel_tv/logos/sg_teledeporte.png",
     ),
     Channel(
         id="sg_teletrak",
@@ -1364,7 +1359,7 @@ CHANNELS: list[Channel] = [
         name_en="Teletrak",
         category="sport_global",
         url="https://unlimited6-cl.dps.live/sportinghd/sportinghd.smil/playlist.m3u8",
-        thumbnail="https://i.imgur.com/NoJvlig.png",
+        thumbnail="/israel_tv/logos/sg_teletrak.png",
     ),
     Channel(
         id="sg_tennis_channel",
@@ -1372,7 +1367,7 @@ CHANNELS: list[Channel] = [
         name_en="Tennis Channel",
         category="sport_global",
         url="https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01444-tennischannelth-tennischannelnl-samsungnl/playlist.m3u8",
-        thumbnail="https://i.imgur.com/tsljAnY.png",
+        thumbnail="/israel_tv/logos/sg_tennis_channel.png",
     ),
     Channel(
         id="sg_tennis_channel_2",
@@ -1380,7 +1375,7 @@ CHANNELS: list[Channel] = [
         name_en="Tennis Channel 2",
         category="sport_global",
         url="https://jmp2.uk/plu-681109b688b9d85d0938c6ba.m3u8",
-        thumbnail="https://i.imgur.com/tsljAnY.png",
+        thumbnail="/israel_tv/logos/sg_tennis_channel_2.png",
     ),
     Channel(
         id="sg_thmanyah_1",
@@ -1388,7 +1383,7 @@ CHANNELS: list[Channel] = [
         name_en="Thmanyah 1",
         category="sport_global",
         url="https://dflive.app.tc/20.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Thmanyah_Logo.svg/500px-Thmanyah_Logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_thmanyah_1.png",
     ),
     Channel(
         id="sg_tigo_sports",
@@ -1396,7 +1391,7 @@ CHANNELS: list[Channel] = [
         name_en="Tigo Sports",
         category="sport_global",
         url="http://162.19.255.233:8080/play/UNbAl57p9hXZClOu56FCTf_5weWAERKDgrt9JpvlAiI/m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tigo_Sports_2025.png/960px-Tigo_Sports_2025.png",
+        thumbnail="/israel_tv/logos/sg_tigo_sports.png",
     ),
     Channel(
         id="sg_tigo_sports_plus",
@@ -1404,7 +1399,7 @@ CHANNELS: list[Channel] = [
         name_en="Tigo Sports+",
         category="sport_global",
         url="http://45.170.130.224:8000/play/a04i/index.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tigo_Sports_2025.png/960px-Tigo_Sports_2025.png",
+        thumbnail="/israel_tv/logos/sg_tigo_sports_plus.png",
     ),
     Channel(
         id="sg_tjk_tv",
@@ -1412,7 +1407,7 @@ CHANNELS: list[Channel] = [
         name_en="TJK TV",
         category="sport_global",
         url="https://tjktv-live.tjk.org/tjktv.m3u8",
-        thumbnail="https://i.imgur.com/3zHdkYG.png",
+        thumbnail="/israel_tv/logos/sg_tjk_tv.png",
     ),
     Channel(
         id="sg_tour_spot_tv",
@@ -1420,7 +1415,7 @@ CHANNELS: list[Channel] = [
         name_en="Tour Spot TV",
         category="sport_global",
         url="https://fox.hostlagarto.com:8081/toursporttv/playlist.m3u8",
-        thumbnail="https://imgur.com/khj869k.png",
+        thumbnail="/israel_tv/logos/sg_tour_spot_tv.png",
     ),
     Channel(
         id="sg_tr_sport",
@@ -1428,7 +1423,7 @@ CHANNELS: list[Channel] = [
         name_en="TR Sport",
         category="sport_global",
         url="https://livetr.teleromagna.it/mia/live/playlist.m3u8",
-        thumbnail="https://i.imgur.com/ELXmaqg.png",
+        thumbnail="/israel_tv/logos/sg_tr_sport.png",
     ),
     Channel(
         id="sg_trace_sport_stars_au",
@@ -1444,7 +1439,7 @@ CHANNELS: list[Channel] = [
         name_en="Turf Movil",
         category="sport_global",
         url="https://tvturf4.janus.cl/playlist/stream.m3u8?d=w&id=",
-        thumbnail="https://i.imgur.com/TwIe4lK.png",
+        thumbnail="/israel_tv/logos/sg_turf_movil.png",
     ),
     Channel(
         id="sg_turkmenistan_sport",
@@ -1452,7 +1447,7 @@ CHANNELS: list[Channel] = [
         name_en="Turkmenistan Sport",
         category="sport_global",
         url="https://alpha.tv.online.tm/hls/ch004.m3u8",
-        thumbnail="https://i.imgur.com/n6vITLu.png",
+        thumbnail="/israel_tv/logos/sg_turkmenistan_sport.png",
     ),
     Channel(
         id="sg_tvmsport_plus",
@@ -1460,7 +1455,7 @@ CHANNELS: list[Channel] = [
         name_en="TVMsport+",
         category="sport_global",
         url="https://stream.smashmalta.com:25463/live/webplayer/livestream/29.m3u8",
-        thumbnail="https://i.imgur.com/YIreFti.png",
+        thumbnail="/israel_tv/logos/sg_tvmsport_plus.png",
     ),
     Channel(
         id="sg_tvr_sport",
@@ -1468,7 +1463,7 @@ CHANNELS: list[Channel] = [
         name_en="TVR Sport",
         category="sport_global",
         url="https://tvr-sport.lg.mncdn.com/tvrsport/smil:tvrsport.smil/chunklist_b5160000.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/TVR_Sport_Logo_2023.svg/960px-TVR_Sport_Logo_2023.svg.png",
+        thumbnail="/israel_tv/logos/sg_tvr_sport.png",
     ),
     Channel(
         id="sg_tvri_sport",
@@ -1483,7 +1478,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Bowling Network",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvsbowling/index.m3u8",
-        thumbnail="https://www.watchyour.tv/channels/logo/tvs-bowling-network.jpg",
+        thumbnail="/israel_tv/logos/sg_tvs_bowling.png",
     ),
     Channel(
         id="sg_tvs_boxing",
@@ -1491,7 +1486,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Boxing",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvsboxing/index.m3u8",
-        thumbnail="https://i.imgur.com/30ZoF75.png",
+        thumbnail="/israel_tv/logos/sg_tvs_boxing.png",
     ),
     Channel(
         id="sg_tvs_classic_sports",
@@ -1499,7 +1494,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Classic Sports",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvs/index.m3u8",
-        thumbnail="https://i.imgur.com/auR0Mi6.png",
+        thumbnail="/israel_tv/logos/sg_tvs_classic_sports.png",
     ),
     Channel(
         id="sg_tvs_sports",
@@ -1507,7 +1502,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Sports",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvssports/index.m3u8",
-        thumbnail="https://i.imgur.com/Lwwq62E.png",
+        thumbnail="/israel_tv/logos/sg_tvs_sports.png",
     ),
     Channel(
         id="sg_tvs_sports_bureau",
@@ -1522,7 +1517,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Turbo",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvsturbo/index.m3u8",
-        thumbnail="https://i.imgur.com/7zYIbU1.png",
+        thumbnail="/israel_tv/logos/sg_tvs_turbo.png",
     ),
     Channel(
         id="sg_tvs_women_sports",
@@ -1530,7 +1525,7 @@ CHANNELS: list[Channel] = [
         name_en="TVS Women Sports",
         category="sport_global",
         url="https://rpn.bozztv.com/gusa/gusa-tvswsn/index.m3u8",
-        thumbnail="https://i.imgur.com/8hC4PfF.png",
+        thumbnail="/israel_tv/logos/sg_tvs_women_sports.png",
     ),
     Channel(
         id="sg_tyc_sports",
@@ -1538,7 +1533,7 @@ CHANNELS: list[Channel] = [
         name_en="TyC Sports",
         category="sport_global",
         url="https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/960px-TyC_Sports_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_tyc_sports.png",
     ),
     Channel(
         id="sg_tyc_sports_latam",
@@ -1546,7 +1541,7 @@ CHANNELS: list[Channel] = [
         name_en="TyC Sports Latin America",
         category="sport_global",
         url="http://201.217.246.42:44310/Live/d93a7c495cb5f5d236b25a3ffea95003/local-90.playlist.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/960px-TyC_Sports_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_tyc_sports_latam.png",
     ),
     Channel(
         id="sg_tyc_sports_usa",
@@ -1554,7 +1549,7 @@ CHANNELS: list[Channel] = [
         name_en="TyC Sports USA",
         category="sport_global",
         url="http://45.170.130.224:8000/play/a020/index.m3u8",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/960px-TyC_Sports_logo.svg.png",
+        thumbnail="/israel_tv/logos/sg_tyc_sports_usa.png",
     ),
     Channel(
         id="sg_unbeaten_sports",
@@ -1562,7 +1557,7 @@ CHANNELS: list[Channel] = [
         name_en="Unbeaten Sports Channel",
         category="sport_global",
         url="https://d1t5afz6qed3xk.cloudfront.net/Unbeaten.m3u8",
-        thumbnail="https://i.imgur.com/LmkNt3v.png",
+        thumbnail="/israel_tv/logos/sg_unbeaten_sports.png",
     ),
     Channel(
         id="sg_usa_network_east",
@@ -1570,7 +1565,6 @@ CHANNELS: list[Channel] = [
         name_en="USA Network East",
         category="sport_global",
         url="https://tvpass.org/live/USANetworkEast/hd",
-        thumbnail="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/USA_Network_logo_%282016%29.svg/960px-USA_Network_logo_%282016%29.svg.png",
     ),
     Channel(
         id="sg_w14dk_all_sports",
@@ -1578,7 +1572,7 @@ CHANNELS: list[Channel] = [
         name_en="W14DK-D All Sports Television Network",
         category="sport_global",
         url="https://2-fss-2.streamhoster.com/pl_118/204972-2205186-1/playlist.m3u8",
-        thumbnail="https://i.imgur.com/D4mZ8ll.png",
+        thumbnail="/israel_tv/logos/sg_w14dk_all_sports.png",
     ),
     Channel(
         id="sg_willow_sports",
@@ -1586,7 +1580,7 @@ CHANNELS: list[Channel] = [
         name_en="Willow Sports",
         category="sport_global",
         url="https://d36r8jifhgsk5j.cloudfront.net/Willow_TV.m3u8",
-        thumbnail="https://provider-static.plex.tv/epg/cms/production/acf3d1d8-c53e-49ca-86e9-0d9410b106b4/Willow_Sports_dark_Background_1500_1000_color.png",
+        thumbnail="/israel_tv/logos/sg_willow_sports.png",
     ),
     Channel(
         id="sg_world_of_freesports",
@@ -1594,7 +1588,7 @@ CHANNELS: list[Channel] = [
         name_en="World of Freesports",
         category="sport_global",
         url="https://mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-mainstreammediafreesportsintl-rakuten/CDN/master.m3u8",
-        thumbnail="https://i.imgur.com/lta5Mog.png",
+        thumbnail="/israel_tv/logos/sg_world_of_freesports.png",
     ),
     Channel(
         id="sg_world_of_freesports_2",
@@ -1602,7 +1596,7 @@ CHANNELS: list[Channel] = [
         name_en="World of Freesports 2",
         category="sport_global",
         url="https://mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv/playlist.m3u8",
-        thumbnail="https://i.imgur.com/lta5Mog.png",
+        thumbnail="/israel_tv/logos/sg_world_of_freesports_2.png",
     ),
     Channel(
         id="sg_world_poker_tour",
@@ -1610,7 +1604,7 @@ CHANNELS: list[Channel] = [
         name_en="World Poker Tour",
         category="sport_global",
         url="https://jmp2.uk/plu-5ad9b7aae738977e2c312132.m3u8",
-        thumbnail="https://i.imgur.com/98kLMjj.png",
+        thumbnail="/israel_tv/logos/sg_world_poker_tour.png",
     ),
     Channel(
         id="sg_world_poker_tour_hd",
@@ -1618,7 +1612,7 @@ CHANNELS: list[Channel] = [
         name_en="World Poker Tour HD",
         category="sport_global",
         url="https://amg00477-samsungelectron-worldpokertour-samsunguk-81igb.amagi.tv/playlist/amg00477-samsungelectron-worldpokertour-samsunguk/playlist.m3u8",
-        thumbnail="https://i.imgur.com/98kLMjj.png",
+        thumbnail="/israel_tv/logos/sg_world_poker_tour_hd.png",
     ),
     Channel(
         id="sg_astrakhan_sport",
@@ -1626,7 +1620,7 @@ CHANNELS: list[Channel] = [
         name_en="Astrakhan Sport",
         category="sport_global",
         url="https://streaming.astrakhan.ru/astrakhanrusporthd/playlist.m3u8",
-        thumbnail="https://i.imgur.com/BKaEtqL.png",
+        thumbnail="/israel_tv/logos/sg_astrakhan_sport.png",
     ),
     Channel(
         id="sg_belarus_5",
@@ -1634,7 +1628,7 @@ CHANNELS: list[Channel] = [
         name_en="Belarus 5",
         category="sport_global",
         url="https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus5.smil/playlist.m3u8",
-        thumbnail="https://i.imgur.com/NJsRFud.png",
+        thumbnail="/israel_tv/logos/sg_belarus_5.png",
     ),
     Channel(
         id="sg_belarus_5_int",
@@ -1642,7 +1636,7 @@ CHANNELS: list[Channel] = [
         name_en="Belarus 5 International",
         category="sport_global",
         url="https://edge59.dc.beltelecom.by/ngtrk/smil:belarus5int.smil/playlist.m3u8",
-        thumbnail="https://i.imgur.com/NJsRFud.png",
+        thumbnail="/israel_tv/logos/sg_belarus_5_int.png",
     ),
     Channel(
         id="sg_boks_tv",
@@ -1650,7 +1644,7 @@ CHANNELS: list[Channel] = [
         name_en="Boks TV",
         category="sport_global",
         url="http://31.148.48.15/Boks_TV/index.m3u8",
-        thumbnail="https://i.imgur.com/R1UjyfX.png",
+        thumbnail="/israel_tv/logos/sg_boks_tv.png",
     ),
     Channel(
         id="sg_match_arena",
@@ -1658,7 +1652,7 @@ CHANNELS: list[Channel] = [
         name_en="Match! Arena",
         category="sport_global",
         url="http://31.148.48.15/Match_Arena_HD/index.m3u8",
-        thumbnail="https://i.imgur.com/udTzwzu.png",
+        thumbnail="/israel_tv/logos/sg_match_arena.png",
     ),
     Channel(
         id="sg_match_boets",
@@ -1666,7 +1660,7 @@ CHANNELS: list[Channel] = [
         name_en="Match! Boets",
         category="sport_global",
         url="http://31.148.48.15/Match_Boec/index.m3u8",
-        thumbnail="https://i.imgur.com/DogOkA4.png",
+        thumbnail="/israel_tv/logos/sg_match_boets.png",
     ),
     Channel(
         id="sg_match_igra",
@@ -1674,7 +1668,7 @@ CHANNELS: list[Channel] = [
         name_en="Match! Igra",
         category="sport_global",
         url="http://31.148.48.15/Match_Igra_HD/index.m3u8",
-        thumbnail="https://i.imgur.com/5XWpF19.png",
+        thumbnail="/israel_tv/logos/sg_match_igra.png",
     ),
     Channel(
         id="sg_match_planeta",
@@ -1682,7 +1676,7 @@ CHANNELS: list[Channel] = [
         name_en="Match! Planeta",
         category="sport_global",
         url="https://cdn4.skygo.mn/live/disk1/Match_Planeta/HLSv3-FTA/Match_Planeta.m3u8",
-        thumbnail="https://i.imgur.com/vhyMb9D.png",
+        thumbnail="/israel_tv/logos/sg_match_planeta.png",
     ),
     Channel(
         id="sg_russkiy_ekstrim",
@@ -1690,7 +1684,7 @@ CHANNELS: list[Channel] = [
         name_en="Russkiy Ekstrim",
         category="sport_global",
         url="http://31.148.48.15/Russkiy_Ekstrim/index.m3u8",
-        thumbnail="https://i.imgur.com/hJK7mOW.png",
+        thumbnail="/israel_tv/logos/sg_russkiy_ekstrim.png",
     ),
     Channel(
         id="sg_futbol_hd",
@@ -1698,7 +1692,7 @@ CHANNELS: list[Channel] = [
         name_en="Futbol HD",
         category="sport_global",
         url="http://31.148.48.15/Futbol_HD/index.m3u8",
-        thumbnail="https://i.imgur.com/pEuaZVx.png",
+        thumbnail="/israel_tv/logos/sg_futbol_hd.png",
     ),
 ]
 
