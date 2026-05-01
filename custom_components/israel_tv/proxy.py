@@ -1,22 +1,26 @@
-"""Local HLS proxy for YES Sport channels.
+"""Local HLS proxy for channels that require server-side fetching.
 
-YES Sport streams use non-standard segment extensions (.jpeg) that ffmpeg's
-HLS demuxer refuses to download. We also need to inject a Referer header on
-every CDN request. This module implements a lightweight aiohttp-based proxy
-that the browser can fetch directly from localhost — solving both problems:
+Two channel types are routed through this proxy:
 
+  yes_sport  — YES Sport (1-4) channels scraped from nextbet7.tv. Tokens
+               are short-lived and the CDN requires a specific Referer.
+
+  proxied    — Static channels whose CDN enforces CORS (e.g. Alkass) so
+               the browser cannot fetch them directly. No scraping needed;
+               the URL is taken straight from channels.py.
+
+Both types solve the same two problems:
   1. No CORS errors (everything comes from http://localhost:8123).
   2. No ffmpeg extension restrictions (we proxy raw bytes ourselves).
 
 Flow:
   Browser → GET /api/israel_tv/stream/{channel_id}/playlist.m3u8
-           ↳  Proxy fetches m3u8 from CDN with Referer header
+           ↳  Proxy fetches m3u8 from CDN (with required headers)
               Rewrites segment URLs to /api/israel_tv/stream/{id}/seg/{b64}
               Returns modified playlist to browser
 
   Browser → GET /api/israel_tv/stream/{channel_id}/seg/{encoded_url}
-           ↳  Proxy fetches the segment from CDN with Referer header
-              Streams raw bytes back to browser
+           ↳  Proxy fetches the segment from CDN and streams it back
 """
 
 from __future__ import annotations
@@ -31,24 +35,25 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 
 from . import yes_sport
+from .channels import CHANNELS_BY_ID
 
 _LOGGER = logging.getLogger(__name__)
 
-# Headers sent to the CDN for every request (playlist + segments)
-_CDN_HEADERS = {
+_BASE_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/120.0.0.0 Safari/537.36"
     ),
-    "Referer": yes_sport.STREAM_REFERER,
     "Accept": "*/*",
 }
+
+# Headers sent for YES Sport CDN requests (token-based, requires Referer)
+_YES_SPORT_HEADERS = {**_BASE_HEADERS, "Referer": yes_sport.STREAM_REFERER}
 
 _PLAYLIST_URL = "/api/israel_tv/stream/{channel_id}/playlist.m3u8"
 _SEGMENT_URL = "/api/israel_tv/stream/{channel_id}/seg/{encoded_url}"
 
-# Pattern to detect absolute URLs in playlist lines
 _ABS_URL_RE = re.compile(r"^https?://", re.IGNORECASE)
 
 
@@ -82,8 +87,28 @@ def _rewrite_playlist(playlist: str, channel_id: str, base_url: str) -> str:
     return "\n".join(lines)
 
 
+async def _resolve_cdn_url(channel_id: str) -> tuple[str, dict]:
+    """Return (cdn_url, headers) for the given channel_id.
+
+    Raises ValueError for unknown / unproxied channels.
+    Raises any exception that yes_sport.get_stream_url may raise.
+    """
+    channel = CHANNELS_BY_ID.get(channel_id)
+    if channel is None:
+        raise ValueError(f"Unknown channel: {channel_id}")
+
+    if channel.channel_type == "yes_sport":
+        cdn_url = await yes_sport.get_stream_url(channel_id)
+        return cdn_url, _YES_SPORT_HEADERS
+
+    if channel.channel_type == "proxied":
+        return channel.url, _BASE_HEADERS
+
+    raise ValueError(f"Channel {channel_id!r} is not routed through the proxy (type={channel.channel_type!r})")
+
+
 class YesSportPlaylistView(HomeAssistantView):
-    """Serve a rewritten YES Sport HLS playlist via the local proxy."""
+    """Serve a rewritten HLS playlist via the local proxy."""
 
     url = _PLAYLIST_URL
     name = "api:israel_tv:stream:playlist"
@@ -92,19 +117,18 @@ class YesSportPlaylistView(HomeAssistantView):
     async def get(self, request: web.Request, channel_id: str) -> web.Response:
         """Fetch, rewrite, and return the HLS master/media playlist."""
         try:
-            cdn_url = await yes_sport.get_stream_url(channel_id)
+            cdn_url, headers = await _resolve_cdn_url(channel_id)
         except Exception as err:  # noqa: BLE001
             _LOGGER.error("Proxy: cannot resolve %s: %s", channel_id, err)
             return web.Response(status=500, text=str(err))
 
-        # Derive the base URL for resolving relative segment paths
         base_url = cdn_url.rsplit("/", 1)[0] + "/"
 
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
                     cdn_url,
-                    headers=_CDN_HEADERS,
+                    headers=headers,
                     timeout=aiohttp.ClientTimeout(total=15),
                 ) as resp:
                     if not resp.ok:
@@ -131,7 +155,7 @@ class YesSportPlaylistView(HomeAssistantView):
 
 
 class YesSportSegmentView(HomeAssistantView):
-    """Proxy a single YES Sport HLS segment to the browser."""
+    """Proxy a single HLS segment to the browser."""
 
     url = _SEGMENT_URL
     name = "api:israel_tv:stream:segment"
@@ -145,11 +169,15 @@ class YesSportSegmentView(HomeAssistantView):
             _LOGGER.warning("Proxy: bad encoded URL: %s", err)
             return web.Response(status=400)
 
+        # Choose headers based on channel type
+        channel = CHANNELS_BY_ID.get(channel_id)
+        headers = _YES_SPORT_HEADERS if (channel and channel.channel_type == "yes_sport") else _BASE_HEADERS
+
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
                     seg_url,
-                    headers=_CDN_HEADERS,
+                    headers=headers,
                     timeout=aiohttp.ClientTimeout(total=30),
                 ) as resp:
                     if not resp.ok:

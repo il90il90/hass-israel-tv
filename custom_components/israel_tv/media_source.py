@@ -62,21 +62,25 @@ class IsraelTVMediaSource(MediaSource):
         if channel is None:
             raise ValueError(f"Unknown channel: {channel_id}")
 
-        if channel.channel_type == "yes_sport":
-            return await self._resolve_yes_sport(channel)
+        if channel.channel_type in ("yes_sport", "proxied"):
+            return await self._resolve_proxied(channel)
 
         return await self._resolve_static(channel)
 
-    async def _resolve_yes_sport(self, channel: Channel) -> PlayMedia:
-        """Resolve a YES Sport channel to our local HLS proxy URL.
+    async def _resolve_proxied(self, channel: Channel) -> PlayMedia:
+        """Resolve a channel that must go through the local HLS proxy.
 
-        The local proxy at /api/israel_tv/stream/{id}/playlist.m3u8 fetches
-        the CDN playlist with the required Referer header and rewrites all
-        segment URLs to go through the proxy as well — bypassing both CORS
-        restrictions and ffmpeg's non-standard extension filter.
+        Used for:
+          - yes_sport: short-lived tokens, non-standard segment extensions
+          - proxied: CORS-restricted CDNs (e.g. Alkass) that block browser
+            requests but allow server-side fetching
+
+        The proxy at /api/israel_tv/stream/{id}/playlist.m3u8 fetches the
+        CDN playlist server-side and rewrites all segment/sub-playlist URLs
+        to pass through the proxy, eliminating CORS issues entirely.
         """
         proxy_url = f"/api/israel_tv/stream/{channel.id}/playlist.m3u8"
-        _LOGGER.debug("YES Sport %s → local proxy %s", channel.id, proxy_url)
+        _LOGGER.debug("Proxied channel %s (%s) → %s", channel.id, channel.channel_type, proxy_url)
         return PlayMedia(proxy_url, HLS_MIME_TYPE)
 
     async def _resolve_static(self, channel: Channel) -> PlayMedia:
