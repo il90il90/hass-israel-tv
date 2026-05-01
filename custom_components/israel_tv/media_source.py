@@ -22,14 +22,15 @@ _LOGGER = logging.getLogger(__name__)
 # HA shows a built-in MDI icon automatically based on MediaClass.
 # Map each category to the most representative class.
 _CATEGORY_MEDIA_CLASS: dict[str, MediaClass] = {
-    "broadcast": MediaClass.CHANNEL,
-    "sport":     MediaClass.CHANNEL,
-    "viva":      MediaClass.TV_SHOW,
-    "reality":   MediaClass.TV_SHOW,
-    "music":     MediaClass.MUSIC,
-    "kids":      MediaClass.TV_SHOW,
-    "lifestyle": MediaClass.TV_SHOW,
-    "movies":    MediaClass.MOVIE,
+    "broadcast":    MediaClass.CHANNEL,
+    "sport":        MediaClass.CHANNEL,
+    "sport_global": MediaClass.CHANNEL,
+    "viva":         MediaClass.TV_SHOW,
+    "reality":      MediaClass.TV_SHOW,
+    "music":        MediaClass.MUSIC,
+    "kids":         MediaClass.TV_SHOW,
+    "lifestyle":    MediaClass.TV_SHOW,
+    "movies":       MediaClass.MOVIE,
 }
 
 
@@ -129,8 +130,14 @@ class IsraelTVMediaSource(MediaSource):
 
         Uses a content-specific MediaClass so HA's frontend displays the
         matching MDI icon automatically — no external image needed.
+        sport_global gets a custom thumbnail served from the local static path.
         """
         media_class = _CATEGORY_MEDIA_CLASS.get(category, MediaClass.DIRECTORY)
+        thumbnail = (
+            "/israel_tv/logos/sport_global.png"
+            if category == "sport_global"
+            else None
+        )
         return BrowseMediaSource(
             domain=DOMAIN,
             identifier=category,
@@ -139,6 +146,7 @@ class IsraelTVMediaSource(MediaSource):
             title=label,
             can_play=False,
             can_expand=True,
+            thumbnail=thumbnail,
         )
 
     def _build_category(self, category: str) -> BrowseMediaSource:
