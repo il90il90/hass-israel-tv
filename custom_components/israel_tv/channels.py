@@ -166,14 +166,6 @@ CHANNELS: list[Channel] = [
         thumbnail=_logo("sport_5"),
     ),
     Channel(
-        id="sport_5_4k",
-        name="ספורט 5 4K",
-        name_en="Sport 5 4K",
-        category="sport",
-        url=_cdn("sport_5_4k"),
-        thumbnail=_logo("sport_5_4k"),
-    ),
-    Channel(
         id="one_1",
         name="ONE 1",
         name_en="ONE 1",
