@@ -5,11 +5,15 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+import homeassistant.helpers.config_validation as cv
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
 from .proxy import YesSportPlaylistView, YesSportSegmentView
+
+# Integration has no YAML configuration — all setup is done via config entries.
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 _LOGGER = logging.getLogger(__name__)
 
