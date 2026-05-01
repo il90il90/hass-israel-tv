@@ -28,7 +28,7 @@ CATEGORY_LABELS: dict[str, str] = {
     "kids": "ילדים",
     "lifestyle": "לייפסטייל",
     "movies": "סרטים",
-    "sport_global": "ספורט GLOBAL",
+    "sport_global": "🌍 ספורט גלובל",
 }
 
 _CDN = "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live"
