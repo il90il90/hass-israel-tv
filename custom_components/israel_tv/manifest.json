@@ -1,12 +1,12 @@
 {
   "domain": "israel_tv",
   "name": "Israel TV",
-  "version": "1.2.0",
-  "documentation": "https://github.com/il90il90/hass-israel-tv",
-  "issue_tracker": "https://github.com/il90il90/hass-israel-tv/issues",
   "codeowners": ["@il90il90"],
-  "iot_class": "cloud_polling",
   "config_flow": true,
+  "dependencies": ["http"],
+  "documentation": "https://github.com/il90il90/hass-israel-tv",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/il90il90/hass-israel-tv/issues",
   "requirements": [],
-  "dependencies": []
+  "version": "1.2.0"
 }
