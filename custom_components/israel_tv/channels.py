@@ -22,13 +22,13 @@ class Channel:
 CATEGORY_LABELS: dict[str, str] = {
     "broadcast": "שידורי ישראל",
     "sport": "ספורט",
-    "sport_global": "ספורט GLOBAL",
     "viva": "VIVA",
     "reality": "ריאליטי ותוכן",
     "music": "מוזיקה ובידור",
     "kids": "ילדים",
     "lifestyle": "לייפסטייל",
     "movies": "סרטים",
+    "sport_global": "ספורט GLOBAL",
 }
 
 _CDN = "https://d1zqtf09wb8nt5.cloudfront.net/livehls/oil/freetv/live"
