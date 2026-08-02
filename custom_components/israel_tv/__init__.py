@@ -10,7 +10,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
-from .proxy import YesSportPlaylistView, YesSportSegmentView
+from .proxy import StreamPlaylistView, StreamSegmentView
 
 # Integration has no YAML configuration — all setup is done via config entries.
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
@@ -36,8 +36,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Register HTTP views and static assets once per HA instance lifetime
     if not _VIEWS_REGISTERED:
-        hass.http.register_view(YesSportPlaylistView())
-        hass.http.register_view(YesSportSegmentView())
+        hass.http.register_view(StreamPlaylistView())
+        hass.http.register_view(StreamSegmentView())
         # async_register_static_paths (HA ≥ 2024.x) — fall back to the
         # older synchronous API for installations running an earlier version.
         logos_path = Path(__file__).parent / "logos"
@@ -55,7 +55,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 "/israel_tv/logos", str(logos_path), cache_headers=True
             )
         _VIEWS_REGISTERED = True
-        _LOGGER.debug("YES Sport HLS proxy views and logo assets registered")
+        _LOGGER.debug("HLS proxy views and logo assets registered")
 
     _LOGGER.debug("Israel TV integration loaded (entry_id=%s)", entry.entry_id)
     return True

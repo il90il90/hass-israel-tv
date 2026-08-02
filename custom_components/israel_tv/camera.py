@@ -47,10 +47,10 @@ class IsraelTVCamera(Camera):
     Static channels (broadcast, Sport 5, etc.) use the direct CloudFront
     CDN URL as the stream source.
 
-    YES Sport channels (Sport 1-4) require a short-lived token and a
-    specific CDN Referer header for segment requests.  They are routed
-    through our local HLS proxy (proxy.py) which handles all of that
-    transparently — ffmpeg only talks to localhost.
+    Premium channels (Sport 1-4 and friends) require a signed token and a
+    specific CDN Referer header on every request.  They are routed through
+    our local HLS proxy (proxy.py) which handles all of that transparently
+    — ffmpeg only talks to localhost.
     """
 
     _attr_has_entity_name = True
@@ -81,11 +81,12 @@ class IsraelTVCamera(Camera):
     async def stream_source(self) -> str | None:
         """Return the HLS playlist URL that HA's stream integration will open.
 
-        For YES Sport channels the proxy URL is constructed using localhost
-        so that ffmpeg (running inside HA) can reach the proxy server-side
-        without going through the external network.
+        For token-based channels the URL is built against localhost so that
+        ffmpeg (running inside HA) reaches the proxy server-side without going
+        out to the external network.  Static and CORS-only channels are handed
+        to ffmpeg directly, since CORS restricts browsers rather than ffmpeg.
         """
-        if self._channel.channel_type == "yes_sport":
+        if self._channel.channel_type == "daddylive":
             port = getattr(self.hass.http, "server_port", 8123)
             return (
                 f"http://localhost:{port}"

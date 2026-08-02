@@ -18,9 +18,11 @@ Live Israeli TV channels inside Home Assistant's **Media Browser** — stream an
 
 ## Features
 
-- **46 live Israeli TV channels** (HLS / M3U8)
-- Organized by category: Broadcast, Sport, ONE, VIVA, Kids, Lifestyle, Music, Movies
-- **YES Sport 1–4** — live streams via built-in HLS proxy (no Referer issues)
+- **193 live channels** (HLS / M3U8) — 44 Israeli plus 149 international sport
+- Organized by category: Broadcast, Sport, VIVA, Reality, Music, Kids, Lifestyle, Movies, Sport Global
+- **Sport 1–5** — including premium channels served through the built-in HLS
+  proxy, which handles the signed token and CDN Referer for you
+- Tokens refresh automatically mid-playback, so long broadcasts do not cut out
 - Full integration with the **Media Browser** (no extra cards needed)
 - **Cast** to Chromecast, Apple TV, Roku, Smart TV, or any `media_player` entity
 - No credentials, no API keys
@@ -90,41 +92,48 @@ The integration is now active. Open **Media** in the sidebar to browse channels.
 
 ## Channel List
 
-|---|---------|--------|--------|
-**46 channels · 8 folders**
+**193 channels · 9 folders**
 
-### 📺 שידורי ישראל
-כאן 11 · כאן 11 HEVC · כאן 11 כתוביות · קשת 12 · קשת 12 HEVC · קשת 12 כתוביות · רשת 13 · רשת 13 HEVC · רשת 13 כתוביות · ערוץ 14 · ערוץ 14 HEVC · ערוץ 14 כתוביות · ערוץ 9
+### 📺 שידורי ישראל (10)
+כאן 11 · כאן 11 כתוביות · קשת 12 · קשת 12 כתוביות · רשת 13 · רשת 13 כתוביות · ערוץ 14 · ערוץ 14 כתוביות · ערוץ 9 · ערוץ 10
 
-### ⚽ ספורט
-ספורט 5 · ספורט 5 פלוס · ספורט 5 פלוס HEVC · ספורט 5 גולד · ספורט 5 לייב · ספורט 5 לייב HEVC · ספורט 5 מקס · ספורט 5 4K · ONE 1 · ONE 2 · ONE דוקו · ONE אדג' · ספורט 1 · ספורט 2 · ספורט 3 · ספורט 4
+### ⚽ ספורט (14)
+ספורט 5 · ספורט 5 פלוס · ספורט 5 גולד · ספורט 5 לייב · ספורט 5 מקס · ספורט 5 סטאר · ONE 1 · ONE 2 · ONE דוקו · ONE אדג' · ספורט 1 · ספורט 2 · ספורט 3 · ספורט 4
 
-### 🎬 VIVA
+### 🎬 VIVA (2)
 VIVA · VIVA פלוס
 
-### 🎭 ריאליטי ותוכן
+### 🎭 ריאליטי ותוכן (2)
 ארץ נהדרת · וואמוס
 
-### 🎵 מוזיקה ובידור
+### 🎵 מוזיקה ובידור (3)
 מיוזיק 24 · מיוזיק IL · ערוץ הקריוקי
 
-### 🧒 ילדים
-יויו · לוגי · ילדותי · ג'וניור · FOMO
+### 🧒 ילדים (6)
+יויו · לוגי · ילדותי · ג'וניור · FOMO · yes סרטים ילדים
 
-### 🌿 לייפסטייל
-פודי · ביוטיז · דייסטאר · A פלוס
+### 🌿 לייפסטייל (5)
+הידברות · פודי · ביוטיז · דייסטאר · A פלוס
 
-### 🎥 סרטים
-קלאסיקות 30A
+### 🎥 סרטים (2)
+קלאסיקות 30A · yes סרטים אקשן
+
+### 🌍 ספורט גלובל (149)
+International sport channels — football, basketball, motorsport, combat sports and more.
 
 ---
 
 ## Troubleshooting
 
-**YES Sport channels not loading**
+**Sport 1–4 or other premium channels not loading**
 
-- YES Sport streams are fetched dynamically from nextbet7.tv via a built-in proxy. Make sure your Home Assistant server has internet access.
-- Tokens refresh automatically every 4 minutes — if a stream stops, wait a moment and try again.
+- These channels carry a signed token that the integration resolves on demand,
+  so the Home Assistant server needs outbound internet access.
+- The token is refreshed automatically well before it expires, and playback
+  continues across the handover. If a stream does stop, reopening the channel
+  forces a fresh one.
+- A channel that is off the air returns an error rather than a picture; try
+  another channel to tell the two cases apart.
 
 **Channel not loading / buffering**
 

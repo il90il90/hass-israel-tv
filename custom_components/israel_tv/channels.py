@@ -14,7 +14,9 @@ class Channel:
     name_en: str
     category: str
     url: str
-    # channel_type="yes_sport" triggers token-based scraping in media_source.py
+    # "static"    — url is played directly by the client
+    # "daddylive" — url is resolved per-play by daddylive.py (leave url empty)
+    # "proxied"   — url is fixed but must be fetched through proxy.py (CORS)
     channel_type: str = "static"
     thumbnail: str | None = None
 
@@ -124,7 +126,15 @@ CHANNELS: list[Channel] = [
         url=_cdn("ch9"),
         thumbnail=_logo("ch9"),
     ),
-    # ── Sport (Sport 5 + ONE + YES Sport — all under one folder) ───────────────
+    Channel(
+        id="ch10",
+        name="ערוץ 10",
+        name_en="Channel 10",
+        category="broadcast",
+        url="",
+        channel_type="daddylive",
+    ),
+    # ── Sport (Sport 5 + ONE + Sport 1-4 — all under one folder) ──────────────
     Channel(
         id="sport_5",
         name="ספורט 5",
@@ -166,6 +176,15 @@ CHANNELS: list[Channel] = [
         thumbnail=_logo("sport_5"),
     ),
     Channel(
+        id="sport_5_star",
+        name="ספורט 5 סטאר",
+        name_en="Sport 5 Star",
+        category="sport",
+        url="",
+        channel_type="daddylive",
+        thumbnail=_logo("sport_5"),
+    ),
+    Channel(
         id="one_1",
         name="ONE 1",
         name_en="ONE 1",
@@ -197,14 +216,15 @@ CHANNELS: list[Channel] = [
         url=_cdn("one_edge"),
         thumbnail=_logo("one_1"),
     ),
-    # Sport 1-4: token refreshed automatically via scraping
+    # Sport 1-4 are not on the free-TV CDN — daddylive.py resolves a fresh
+    # signed URL on every play.
     Channel(
         id="yes1",
         name="ספורט 1",
         name_en="Sport 1",
         category="sport",
         url="",
-        channel_type="yes_sport",
+        channel_type="daddylive",
         thumbnail=_logo("yes1"),
     ),
     Channel(
@@ -213,7 +233,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 2",
         category="sport",
         url="",
-        channel_type="yes_sport",
+        channel_type="daddylive",
         thumbnail=_logo("yes2"),
     ),
     Channel(
@@ -222,7 +242,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 3",
         category="sport",
         url="",
-        channel_type="yes_sport",
+        channel_type="daddylive",
         thumbnail=_logo("yes3"),
     ),
     Channel(
@@ -231,7 +251,7 @@ CHANNELS: list[Channel] = [
         name_en="Sport 4",
         category="sport",
         url="",
-        channel_type="yes_sport",
+        channel_type="daddylive",
         thumbnail=_logo("yes4"),
     ),
     # ── VIVA ───────────────────────────────────────────────────────────────────
@@ -327,6 +347,14 @@ CHANNELS: list[Channel] = [
         category="kids",
         url=_cdn("fomo"),
     ),
+    Channel(
+        id="yes_movies_kids",
+        name="yes סרטים ילדים",
+        name_en="yes Movies Kids",
+        category="kids",
+        url="",
+        channel_type="daddylive",
+    ),
     # ── Lifestyle ──────────────────────────────────────────────────────────────
     Channel(
         id="hidabroot",
@@ -372,6 +400,14 @@ CHANNELS: list[Channel] = [
         name_en="30A Classic Movies",
         category="movies",
         url="https://30a-tv.com/feeds/pzaz/30atvmovies.m3u8",
+    ),
+    Channel(
+        id="yes_movies_action",
+        name="yes סרטים אקשן",
+        name_en="yes Movies Action",
+        category="movies",
+        url="",
+        channel_type="daddylive",
     ),
 
     # ── Sport Global (iptv-org tested, HTTP 200 verified) ───────────────────────
@@ -1558,6 +1594,14 @@ CHANNELS: list[Channel] = [
         category="sport_global",
         url="http://31.148.48.15/Futbol_HD/index.m3u8",
         thumbnail="/israel_tv/logos/sg_futbol_hd.png",
+    ),
+    Channel(
+        id="sg_yes_network",
+        name="YES Network",
+        name_en="YES Network",
+        category="sport_global",
+        url="",
+        channel_type="daddylive",
     ),
 ]
 

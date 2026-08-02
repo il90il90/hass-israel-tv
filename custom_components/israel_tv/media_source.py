@@ -15,7 +15,6 @@ from homeassistant.core import HomeAssistant
 
 from .channels import CATEGORY_LABELS, CHANNELS_BY_ID, Channel, get_channels_by_category
 from .const import DOMAIN, HLS_MIME_TYPE, ROOT_ID
-from . import yes_sport
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -54,15 +53,16 @@ class IsraelTVMediaSource(MediaSource):
 
         - Static channels (Sport 5, broadcasts, etc.) return the direct
           CloudFront CDN URL which is publicly accessible.
-        - YES Sport channels are scraped from nextbet7.tv on demand, with
-          the token cached for 4 minutes and refreshed transparently.
+        - Premium channels (Sport 1-4 and friends) are resolved on demand
+          through the local proxy, which mints and refreshes the signed token
+          transparently.
         """
         channel_id = item.identifier
         channel = CHANNELS_BY_ID.get(channel_id)
         if channel is None:
             raise ValueError(f"Unknown channel: {channel_id}")
 
-        if channel.channel_type in ("yes_sport", "proxied"):
+        if channel.channel_type in ("daddylive", "proxied"):
             return await self._resolve_proxied(channel)
 
         return await self._resolve_static(channel)
@@ -71,7 +71,7 @@ class IsraelTVMediaSource(MediaSource):
         """Resolve a channel that must go through the local HLS proxy.
 
         Used for:
-          - yes_sport: short-lived tokens, non-standard segment extensions
+          - daddylive: signed tokens, enforced Referer, disguised segments
           - proxied: CORS-restricted CDNs (e.g. Alkass) that block browser
             requests but allow server-side fetching
 
