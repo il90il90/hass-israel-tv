@@ -50,15 +50,8 @@ from homeassistant.components.http import HomeAssistantView
 
 from . import daddylive
 from .channels import CHANNELS_BY_ID
-from .retry import is_transient_status, retry_async
 
 _LOGGER = logging.getLogger(__name__)
-
-# A segment fetch that hits a transient CDN failure is retried server-side so a
-# single blip does not stop the Media Browser player (which, unlike the ffmpeg
-# camera path, fetches each segment directly with no buffering of its own).
-_SEGMENT_FETCH_ATTEMPTS = 3
-_SEGMENT_RETRY_DELAY = 0.25
 
 _BASE_HEADERS = {
     "User-Agent": (
@@ -339,62 +332,43 @@ class StreamSegmentView(HomeAssistantView):
 
         headers = _headers_for(channel_id)
 
-        async def _fetch_once() -> tuple[int, str | None, bytes]:
-            """Fetch the segment once, reading the whole body.
-
-            Returns (status, content_type, body). The body is read inside the
-            request context so the connection can be released before the next
-            retry, and because both branches below (binary segment and
-            sub-playlist) need the full payload anyway.
-            """
+        try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
                     seg_url,
                     headers=headers,
                     timeout=aiohttp.ClientTimeout(total=30),
                 ) as resp:
-                    return resp.status, resp.content_type, await resp.read()
+                    if not resp.ok:
+                        return web.Response(status=resp.status)
 
-        try:
-            status, content_type, data = await retry_async(
-                _fetch_once,
-                attempts=_SEGMENT_FETCH_ATTEMPTS,
-                delay=_SEGMENT_RETRY_DELAY,
-                retry_on_result=lambda result: is_transient_status(result[0]),
-                retry_on_exception=(aiohttp.ClientError, asyncio.TimeoutError),
-            )
+                    looks_like_playlist = (
+                        "mpegurl" in (resp.content_type or "").lower()
+                        or seg_url.split("?")[0].endswith(".m3u8")
+                    )
+
+                    if looks_like_playlist:
+                        text = await resp.text(encoding="utf-8", errors="replace")
+                        if "#EXTM3U" in text or "#EXT-X" in text:
+                            rewritten = _rewrite_playlist(
+                                text, channel_id, _base_of(seg_url)
+                            )
+                            _LOGGER.debug(
+                                "Proxy: rewriting sub-playlist for %s (%d lines)",
+                                channel_id,
+                                len(rewritten.splitlines()),
+                            )
+                            return _playlist_response(rewritten)
+
+                    # Binary segment — stream raw bytes.
+                    data = await resp.read()
+                    return web.Response(
+                        body=data,
+                        content_type=_segment_content_type(data, resp.content_type),
+                        headers={"Access-Control-Allow-Origin": "*"},
+                    )
         except (aiohttp.ClientError, asyncio.TimeoutError) as err:
             # A timeout is not a ClientError, and letting either escape the
             # handler would turn a recoverable stall into an HTTP 500.
             _LOGGER.error("Proxy: segment fetch failed for %s: %s", seg_url[:80], err)
             return web.Response(status=502)
-
-        if not 200 <= status < 300:
-            # A real error answer (or a transient one that never recovered).
-            _LOGGER.warning(
-                "Proxy: segment %s returned HTTP %s", seg_url[:80], status
-            )
-            return web.Response(status=status if status >= 400 else 502)
-
-        looks_like_playlist = (
-            "mpegurl" in (content_type or "").lower()
-            or seg_url.split("?")[0].endswith(".m3u8")
-        )
-
-        if looks_like_playlist:
-            text = data.decode("utf-8", errors="replace")
-            if "#EXTM3U" in text or "#EXT-X" in text:
-                rewritten = _rewrite_playlist(text, channel_id, _base_of(seg_url))
-                _LOGGER.debug(
-                    "Proxy: rewriting sub-playlist for %s (%d lines)",
-                    channel_id,
-                    len(rewritten.splitlines()),
-                )
-                return _playlist_response(rewritten)
-
-        # Binary segment — stream raw bytes.
-        return web.Response(
-            body=data,
-            content_type=_segment_content_type(data, content_type),
-            headers={"Access-Control-Allow-Origin": "*"},
-        )
